@@ -1,94 +1,93 @@
-🏘️ BairroServices
-Connecting Communities with Local Professionals and Small Businesses IN SAO PAULO.
+# BairroServices
 
-BairroServices is a community-focused web platform designed to connect people with nearby professionals, independent service providers, and small business owners.
+![Status](https://img.shields.io/badge/status-in%20development-orange)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+![Community](https://img.shields.io/badge/project-community%20platform-blue)
 
-The platform makes it easier for users to discover services available in their neighborhoods while giving local professionals and entrepreneurs an opportunity to showcase their skills, promote their businesses, and reach more customers.
+Connecting communities with local professionals and small businesses in São Paulo.
 
-Our goal is to strengthen local communities by making everyday services easier to find and helping small businesses grow.
+BairroServices is a community-focused web platform designed to help residents discover reliable local professionals and small businesses in their neighborhoods. It creates a simple bridge between customers and service providers, making everyday services easier to find and local entrepreneurship more visible.
 
-⸻
+## Why this project exists
 
-🌍 About the Project
+Finding trustworthy local services can be difficult, especially in busy urban communities. At the same time, many independent professionals and small business owners struggle to reach the people who need them most.
 
-Finding reliable professionals and local services can sometimes be difficult. Many skilled workers and small business owners also struggle to reach potential customers.
+BairroServices was created to solve this problem by building a digital marketplace where:
 
-BairroServices aims to solve this problem by creating a digital marketplace where customers can discover local services and professionals can promote their work.
+- customers can discover nearby professionals and services
+- local businesses can gain visibility
+- independent workers can showcase their skills
+- neighborhoods become more connected
 
-Whether someone needs an electrician, plumber, carpenter, cleaning professional, food vendor, or another local service, BairroServices aims to bring customers and service providers together.
+## Project goals
 
-🎯 Project Goals
+- Make finding nearby services easier and faster
+- Help professionals promote their skills
+- Increase local business visibility
+- Support community growth and local entrepreneurship
+- Strengthen connections within neighborhoods
 
-* Make finding nearby services easier and faster.
-* Help independent professionals promote their skills.
-* Give small businesses more visibility.
-* Support local entrepreneurship.
-* Strengthen connections within neighborhoods and communities.
+## Features
 
-✨ Features
+### For customers
+- Search for services by neighborhood
+- Discover local professionals and businesses
+- Browse service categories
+- View profiles and business details
+- Contact service providers
 
-For Customers
+### For professionals and business owners
+- Create a personal or business profile
+- Showcase skills, services, and products
+- Promote services to nearby customers
+- Reach people looking for local help
+- Increase visibility in the community
 
-* Search for services by neighborhood.
-* Discover nearby professionals and businesses.
-* Browse different service categories.
-* View professional profiles and business information.
-* Contact service providers.
+### Platform features
+- User registration and login
+- Responsive website design
+- Service search functionality
+- Professional profile pages
+- Service categories
 
-For Professionals and Business Owners
+> Note: Features are being implemented progressively as the project evolves.
 
-* Create a personal or business profile.
-* Showcase skills, services, and products.
-* Promote businesses to potential customers.
-* Reach people looking for services nearby.
-* Increase local business visibility.
+## Tech stack
 
-Platform Features
+This project is currently built with:
 
-* User registration and login.
-* Responsive website design.
-* Service search functionality.
-* Professional profile pages.
-* Service categories.
+- HTML5
+- CSS3
+- JavaScript
 
-Note: Features will be implemented progressively as the project develops.
+Additional technologies may be introduced as the platform grows.
 
-🛠️ Technologies Used
+## Roadmap
 
-The project is being developed using:
+- [ ] Complete user registration and authentication
+- [ ] Add professional and business profile management
+- [ ] Implement location-based service discovery
+- [ ] Add advanced search and filtering
+- [ ] Add customer reviews and ratings
+- [ ] Add direct communication between customers and professionals
+- [ ] Integrate Google Maps
+- [ ] Improve mobile experience
+- [ ] Connect to a database
 
-* HTML5 – Website structure.
-* CSS3 – Styling and responsive layouts.
-* JavaScript – Interactive functionality and application logic.
-
-Additional technologies may be introduced as the project grows.
-
-Planned improvements include:
-
-☐ Complete user registration and authentication.
-☐ Professional and business profile management.
-☐ Location-based service discovery.
-☐ Advanced search and filtering.
-☐ Customer reviews and ratings.
-☐ Direct communication between customers and professionals.
-☐ Google Maps integration.
-☐ Mobile-friendly experience.
-☐ Database integration.
-
-🎯 Our Mission
+## Mission
 
 To empower local professionals, support small businesses, and make communities more connected through technology.
 
-BairroServices – Local Skills. Local Businesses. Stronger Communities.
+## Screenshots
 
-────────
+Screenshots will be added as the platform develops.
 
-👨‍💻 Developer
+## Getting started
 
-Created as a project focused on learning software development and using technology to solve real-world community problems.
+This project is still in early development. To run it locally:
 
-Built with passion and a vision for stronger communities. ❤️
-
-
-
-Screenshots of the platform will be added here as development progresses.
+```bash
+git clone https://github.com/saheedev123/my-first-work.git
+cd my-first-work
