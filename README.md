@@ -63,6 +63,32 @@ The project is being developed using:
 
 Additional technologies may be introduced as the project grows.
 
+Planned improvements include:
+
+☐ Complete user registration and authentication.
+☐ Professional and business profile management.
+☐ Location-based service discovery.
+☐ Advanced search and filtering.
+☐ Customer reviews and ratings.
+☐ Direct communication between customers and professionals.
+☐ Google Maps integration.
+☐ Mobile-friendly experience.
+☐ Database integration.
+
+🎯 Our Mission
+
+To empower local professionals, support small businesses, and make communities more connected through technology.
+
+BairroServices – Local Skills. Local Businesses. Stronger Communities.
+
+────────
+
+👨‍💻 Developer
+
+Created as a project focused on learning software development and using technology to solve real-world community problems.
+
+Built with passion and a vision for stronger communities. ❤️
+
 
 
 Screenshots of the platform will be added here as development progresses.
