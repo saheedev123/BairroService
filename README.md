@@ -86,8 +86,4 @@ Screenshots will be added as the platform develops.
 
 ## Getting started
 
-This project is still in early development. To run it locally:
-
-```bash
-git clone https://github.com/saheedev123/my-first-work.git
-cd my-first-work
+This project is still in early development. 
