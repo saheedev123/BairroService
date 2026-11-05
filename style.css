@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7f5;
+    color: #222;
+}
+
+header {
+    background: #173f32;
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+.profession-hero {
+    background: #e5efe8;
+    padding: 60px 7%;
+    text-align: center;
+}
+
+.profession-hero h1 {
+    margin-bottom: 15px;
+    color: #173f32;
+}
+
+.profession-hero p {
+    margin-bottom: 25px;
+}
+
+.profession-hero input {
+    padding: 14px;
+    width: min(400px, 75%);
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    background: #26734d;
+    color: white;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.profession-list {
+    padding: 45px 7%;
+}
+
+.profession-list h2 {
+    margin-bottom: 25px;
+}
+
+.professional-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+.professional-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.professional-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.professional-info {
+    padding: 20px;
+}
+
+.professional-info h3 {
+    margin-bottom: 12px;
+    color: #173f32;
+}
+
+.professional-info p {
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.professional-info button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    .profession-hero {
+        padding: 40px 5%;
+    }
+
+    .profession-list {
+        padding: 30px 5%;
+    }
+}

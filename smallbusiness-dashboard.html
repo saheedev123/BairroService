@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BairroServices - Business Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8f5;
+            color: #173f32;
+        }
+
+        header {
+            background: #173f32;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .dashboard {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            margin-bottom: 10px;
+        }
+
+        .dashboard-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+        }
+
+        .dashboard-card h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 14px 0 7px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background: #26734d;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #173f32;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+        }
+
+        .product-card {
+            border: 1px solid #e1e8e2;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 13px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .price {
+            color: #26734d;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .delete-button {
+            background: #b83232;
+            width: 100%;
+        }
+
+        .empty-message {
+            color: #777;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 750px) {
+            .dashboard-content {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 18px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>BairroServices</h2>
+        <a href="index.html">Voltar à página inicial</a>
+    </header>
+
+    <main class="dashboard">
+
+        <section class="welcome">
+            <h1>Painel do Pequeno Empresário</h1>
+            <p>Gerencie seu negócio e mostre seus produtos aos seus vizinhos.</p>
+        </section>
+
+        <div class="dashboard-content">
+
+            <!-- ADD PRODUCT FORM -->
+
+            <section class="dashboard-card">
+
+                <h2>Adicionar Produto</h2>
+
+                <form id="productForm">
+
+                    <label for="productName">Nome do produto</label>
+                    <input type="text" id="productName"
+                        placeholder="Ex: Bolo de chocolate" required>
+
+                    <label for="productCategory">Categoria</label>
+                    <select id="productCategory" required>
+                        <option value="">Escolha uma categoria</option>
+                        <option value="Comidas e lanches">Comidas e lanches</option>
+                        <option value="Bolos e padarias">Bolos e padarias</option>
+                        <option value="Roupas e moda">Roupas e moda</option>
+                        <option value="Mercados e mercearias">Mercados e mercearias</option>
+                        <option value="Beleza e cosméticos">Beleza e cosméticos</option>
+                        <option value="Eletrônicos">Eletrônicos</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+
+                    <label for="productPrice">Preço (R$)</label>
+                    <input type="number" id="productPrice"
+                        placeholder="Ex: 35.00" min="0.01"
+                        step="0.01" required>
+
+                    <label for="productDescription">Descrição do produto</label>
+                    <textarea id="productDescription"
+                        rows="3"
+                        placeholder="Descreva seu produto..."></textarea>
+
+                    <label for="productImage">Foto do produto</label>
+                    <input type="file" id="productImage"
+                        accept="image/*" required>
+
+                    <button type="submit">Adicionar Produto</button>
+
+                </form>
+
+            </section>
+
+            <!-- PRODUCT LIST -->
+
+            <section class="dashboard-card">
+
+                <h2>Meus Produtos</h2>
+
+                <div id="productList" class="product-list">
+
+                    <p class="empty-message">
+                        Você ainda não adicionou nenhum produto.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <script>
+
+        const productForm = document.getElementById("productForm");
+        const productList = document.getElementById("productList");
+
+        let products = JSON.parse(
+            localStorage.getItem("bairroProducts") || "[]"
+        );
+
+        function displayProducts() {
+
+            productList.innerHTML = "";
+
+            if (products.length === 0) {
+                productList.innerHTML =
+                    '<p class="empty-message">Você ainda não adicionou nenhum produto.</p>';
+                return;
+            }
+
+            products.forEach((product, index) => {
+
+                productList.innerHTML += `
+                    <div class="product-card">
+
+                        <img src="${product.image}" alt="${product.name}">
+
+                        <div class="product-info">
+
+                            <h3>${product.name}</h3>
+
+                            <p>${product.category}</p>
+
+                            <p class="price">
+                                ${Number(product.price).toLocaleString("pt-BR", {
+                                    style: "currency",
+                                    currency: "BRL"
+                                })}
+                            </p>
+
+                            <p>${product.description || ""}</p>
+
+                            <button class="delete-button"
+                                onclick="deleteProduct(${index})">
+                                Excluir produto
+                            </button>
+
+                        </div>
+
+                    </div>
+                `;
+            });
+        }
+
+        productForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById("productName").value;
+            const category = document.getElementById("productCategory").value;
+            const price = document.getElementById("productPrice").value;
+            const description = document.getElementById("productDescription").value;
+            const imageFile = document.getElementById("productImage").files[0];
+
+            if (!imageFile) {
+                alert("Por favor, escolha uma foto.");
+                return;
+            }
+
+            if (!imageFile.type.startsWith("image/")) {
+                alert("Escolha um arquivo de imagem válido.");
+                return;
+            }
+
+            if (imageFile.size > 1024 * 1024) {
+                alert("Escolha uma imagem com menos de 1 MB para este teste.");
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function() {
+
+                const newProduct = {
+                    name: name,
+                    category: category,
+                    price: price,
+                    description: description,
+                    image: reader.result
+                };
+
+                products.push(newProduct);
+
+                try {
+                    localStorage.setItem(
+                        "bairroProducts",
+                        JSON.stringify(products)
+                    );
+                } catch (error) {
+                    products.pop();
+                    alert("Não foi possível salvar. Tente uma imagem menor.");
+                    return;
+                }
+
+                productForm.reset();
+                displayProducts();
+
+                alert("Produto adicionado com sucesso!");
+
+            };
+
+            reader.readAsDataURL(imageFile);
+
+        });
+
+        function deleteProduct(index) {
+
+            if (confirm("Tem certeza que deseja excluir este produto?")) {
+
+                products.splice(index, 1);
+
+                localStorage.setItem(
+                    "bairroProducts",
+                    JSON.stringify(products)
+                );
+
+                displayProducts();
+            }
+        }
+
+        displayProducts();
+
+    </script>
+
+</body>
+</html>

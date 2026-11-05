@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Electricians | BairroServices</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h2>BairroServices</h2>
+    <a href="index.html">Home</a>
+</header>
+
+<section class="profession-hero">
+    <h1>Find Electricians Near You</h1>
+    <p>Discover trusted electrical professionals in your neighborhood.</p>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by name or neighborhood..."
+    >
+
+    <button onclick="searchElectricistas()">Search</button>
+</section>
+
+<section class="profession-list">
+    <h2>Available Electricians</h2>
+
+    <div id="electricistasContainer" class="professional-grid">
+    </div>
+</section>
+
+<script src="electricistas.js"></script>

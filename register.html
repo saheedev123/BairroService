@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -16,83 +17,107 @@
 
         <h1>Crie sua Conta</h1>
 
-        <p>Cadastre-se no BairroServices e deixe seus
-             vizinhos conhecerem seu negócio ou serviços.</p>
+        <p>
+            Cadastre-se no BairroServices e deixe seus
+            vizinhos conhecerem seu negócio ou serviços.
+        </p>
 
         <form id="registerForm">
 
-            <label>Nome completo</label>
-            <input
-                type="text"
-                id="fullname"
-                placeholder="Digite seu Nome"
-                required
-            >
+            <label for="fullname">Nome completo</label>
+            <input type="text" id="fullname"
+                placeholder="Digite seu nome" required>
 
-            <label>Endereço de email</label>
-            <input
-                type="email"
-                id="email"
-                placeholder="Digite seu e-mail"
-                required
-            >
+            <label for="email">Endereço de email</label>
+            <input type="email" id="email"
+                placeholder="Digite seu e-mail" required>
 
-            <label>Número de telefone</label>
-            <input
-                type="tel"
-                id="phone"
-                placeholder="Digite seu número de telefone"
-                required
-            >
+            <label for="phone">Número de telefone</label>
+            <input type="tel" id="phone"
+                placeholder="Digite seu número de telefone" required>
 
-            <label>Your Neighborhood</label>
-            <input
-                type="text"
-                id="neighborhood"
-                placeholder="e.g. Taboão da Serra"
-                required
-            >
+            <label for="neighborhood">Seu bairro</label>
+            <input type="text" id="neighborhood"
+                placeholder="Ex: Taboão da Serra" required>
 
-            <label>O que melhor te descreve?</label>
+            <label for="accountType">O que melhor te descreve?</label>
+
             <select id="accountType" required>
                 <option value="">Escolha o tipo de conta</option>
                 <option value="professional">Profissional de Serviço</option>
-                <option value="business">dono de pequena empresa</option>
-                
+                <option value="business">Dono de pequena empresa</option>
             </select>
 
-            <label>SENHA</label>
-            <input
-                type="password"
-                id="password"
-                placeholder="Create a password"
-                minlength="8"
-                required
-            >
+            <!-- SERVICE PROFESSIONAL SECTION -->
 
-            <label>Confirmar Senha</label>
-            <input
-                type="password"
-                id="confirmPassword"
-                placeholder="Confirm your password"
-                minlength="8"
-                required
-            >
+            <div id="professionSection" style="display: none;">
+
+                <label for="profession">Qual serviço você oferece?</label>
+
+                <select id="profession">
+                    <option value="">Escolha sua profissão</option>
+                    <option value="electrician">Eletricista</option>
+                    <option value="plumber">Encanador</option>
+                    <option value="carpenter">Carpinteiro</option>
+                    <option value="cleaning">Limpeza</option>
+                    <option value="home-repairs">Reparos domésticos</option>
+                    <option value="other">Outro serviço</option>
+                </select>
+
+            </div>
+
+            <!-- SMALL BUSINESS SECTION -->
+
+            <div id="businessSection" style="display: none;">
+
+                <label for="businessName">Nome da empresa ou negócio</label>
+                <input type="text" id="businessName"
+                    placeholder="Ex: Doce Encanto">
+
+                <label for="businessCategory">Categoria do negócio</label>
+
+                <select id="businessCategory">
+                    <option value="">Escolha a categoria</option>
+                    <option value="food">Comidas e lanches</option>
+                    <option value="bakery">Bolos e padarias</option>
+                    <option value="clothing">Roupas e moda</option>
+                    <option value="grocery">Mercados e mercearias</option>
+                    <option value="beauty">Beleza e cosméticos</option>
+                    <option value="electronics">Eletrônicos</option>
+                    <option value="other">Outro negócio</option>
+                </select>
+
+                <label for="businessDescription">Descrição do negócio</label>
+                <textarea id="businessDescription"
+                    placeholder="Conte um pouco sobre sua empresa e os produtos que vende."
+                    rows="4"></textarea>
+
+            </div>
+
+            <label for="password">SENHA</label>
+            <input type="password" id="password"
+                placeholder="Crie uma senha" minlength="8" required>
+
+            <label for="confirmPassword">Confirmar Senha</label>
+            <input type="password" id="confirmPassword"
+                placeholder="Confirme sua senha" minlength="8" required>
 
             <button type="submit">Criar conta</button>
 
         </form>
 
         <p>
-           Já tem uma conta?
-            <a href="login.html">Cadastre-se</a>
+            Já tem uma conta?
+            <a href="login.html">Entrar</a>
         </p>
 
-        <a href="first.html">Voltar à página inicial</a>
+        <a href="index.html">Voltar à página inicial</a>
 
     </div>
 
-    <script src="register.js"></script>
+    <!-- JAVASCRIPT -->
+
+    
 
 </body>
 </html>

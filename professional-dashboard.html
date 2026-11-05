@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Dashboard | BairroServices</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f7f3;
+            color: #263b30;
+        }
+
+        header {
+            background: #173f32;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .dashboard {
+            max-width: 950px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            margin-bottom: 10px;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .profile-card h2 {
+            margin-bottom: 20px;
+            color: #26734d;
+        }
+
+        .profile-card p {
+            margin: 12px 0;
+            line-height: 1.5;
+        }
+
+        .description {
+            margin-top: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            min-height: 100px;
+            font-family: Arial, sans-serif;
+        }
+
+        button {
+            background: #26734d;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 7px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #173f32;
+        }
+
+        .logout {
+            background: #a83232;
+        }
+
+        .logout:hover {
+            background: #812525;
+        }
+
+        .notice {
+            background: #e5efe8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 18px;
+            }
+
+            .dashboard {
+                margin: 20px auto;
+            }
+
+            .profile-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>BairroServices</h2>
+    <a href="index.html">Voltar à página inicial</a>
+</header>
+
+<main class="dashboard">
+
+    <section class="welcome">
+        <h1>Bem-vindo ao seu painel profissional!</h1>
+        <p>Gerencie suas informações e apresente seus serviços aos clientes.</p>
+    </section>
+
+    <section class="profile-card">
+        <h2>Meu Perfil Profissional</h2>
+
+        <p><strong>Nome:</strong> <span id="userName"></span></p>
+        <p><strong>Profissão:</strong> <span id="userProfession"></span></p>
+        <p><strong>Bairro:</strong> <span id="userNeighborhood"></span></p>
+        <p><strong>Email:</strong> <span id="userEmail"></span></p>
+        <p><strong>Telefone:</strong> <span id="userPhone"></span></p>
+
+        <div class="description">
+            <label for="serviceDescription">
+                <strong>Descreva seus serviços:</strong>
+            </label>
+
+            <textarea
+                id="serviceDescription"
+                placeholder="Conte aos clientes quais serviços você oferece..."
+            ></textarea>
+
+            <button onclick="saveDescription()">
+                Salvar descrição
+            </button>
+        </div>
+    </section>
+
+    <section class="notice">
+        <h3>Próximo passo</h3>
+        <p>
+            Em breve, você poderá aparecer na lista de profissionais
+            do BairroServices para que clientes encontrem e contratem
+            seus serviços.
+        </p>
+    </section>
+
+    <button class="logout" onclick="logout()">Sair da conta</button>
+
+</main>
+
+<script>
+    const user = JSON.parse(sessionStorage.getItem("bairroUser"));
+
+    if (!user || user.accountType !== "professional") {
+        alert("Faça seu cadastro como profissional primeiro.");
+        window.location.href = "register.html";
+    } else {
+        document.getElementById("userName").textContent =
+            user.fullname || "";
+
+        document.getElementById("userNeighborhood").textContent =
+            user.neighborhood || "";
+
+        document.getElementById("userEmail").textContent =
+            user.email || "";
+
+        document.getElementById("userPhone").textContent =
+            user.phone || "";
+
+        const professions = {
+            electrician: "Eletricista",
+            plumber: "Encanador",
+            carpenter: "Carpinteiro",
+            cleaning: "Serviços de limpeza",
+            "home-repairs": "Reparos domésticos",
+            other: "Outro"
+        };
+
+        document.getElementById("userProfession").textContent =
+            professions[user.profession] || user.profession || "Não informado";
+
+        document.getElementById("serviceDescription").value =
+            user.serviceDescription || "";
+    }
+
+    function saveDescription() {
+        const description =
+            document.getElementById("serviceDescription").value;
+
+        user.serviceDescription = description;
+
+        sessionStorage.setItem("bairroUser", JSON.stringify(user));
+
+        alert("Descrição salva com sucesso!");
+    }
+
+    function logout() {
+        sessionStorage.removeItem("bairroUser");
+        window.location.href = "login.html";
+    }
+</script>
+
+</body>
+</html>
