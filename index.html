@@ -32,7 +32,7 @@
 
 
       <div class="header">
-              <h1>Encontre Perto. Contrate Local. Cresça Junto</h1>
+              <h1>Encontre Perto. Contrate Local. Cresça Junto.</h1>
 
           <p>Quer ganhar mais com suas habilidades? Exponha seu trabalho. Promova seu 
             negócio. Alcance mais clientes. Cadastre-se no BairroServices hoje mesmo e conecte-se a
@@ -73,16 +73,59 @@
 
 <!-- COMMUNITY BANNER -->
 
-<section class="community-section">
 
-    <div class="community-container">
+<!-- BAIRROSERVICES SLIDESHOW -->
+<section class="community-slideshow">
 
-        <img
-            src="images/need.jpeg"
-            alt="Nossa comunidade: mais de 100 pequenos empresários registrados no BairroServices"
-            class="community-banner"
-        >
+    <div class="slides-container">
 
+        <!-- SLIDE 1 -->
+        <div class="slide active">
+            <img src="images/let.jpg" alt="Professional electrician working">
+
+            <div class="slide-overlay">
+                <span>ENCONTRE PROFISSIONAIS</span>
+                <h2>Precisa de ajuda em casa?</h2>
+                <p>Encontre eletricistas, encanadores, carpinteiros e outros profissionais perto de você.</p>
+                <a href="#services" class="slide-button">Explorar serviços</a>
+            </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide">
+            <img src="images/image.jpeg" alt="Small business owner selling products">
+
+            <div class="slide-overlay">
+                <span>DESCUBRA NEGÓCIOS LOCAIS</span>
+                <h2>Encontre tudo no seu bairro!</h2>
+                <p>Descubra lojas, bolos, comidas, roupas e pequenos negócios perto de casa.</p>
+                <a href="businesses.html" class="slide-button">Explorar negócios</a>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide">
+            <img src="images/photo-1653762383085-0e24b0da8285.avif" alt="Local neighborhood business community">
+
+            <div class="slide-overlay">
+                <span>FORTALEÇA SUA COMUNIDADE</span>
+                <h2>Seu bairro tem muito a oferecer!</h2>
+                <p>Conecte-se com profissionais e empreendedores da sua região.</p>
+                <a href="register.html" class="slide-button">Cadastre-se agora</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PREVIOUS AND NEXT BUTTONS -->
+    <button class="slide-arrow prev" type="button" aria-label="Slide anterior">&#10094;</button>
+    <button class="slide-arrow next" type="button" aria-label="Próximo slide">&#10095;</button>
+
+    <!-- NAVIGATION DOTS -->
+    <div class="slide-dots">
+        <button class="dot active" type="button" aria-label="Slide 1"></button>
+        <button class="dot" type="button" aria-label="Slide 2"></button>
+        <button class="dot" type="button" aria-label="Slide 3"></button>
     </div>
 
 </section>
@@ -183,7 +226,7 @@ Empoderando negócios locais.
     <div class="services-grid">
 
         <div class="service-card">
-            <img src="images/home.jpeg"
+            <img src="images/jarmoluk-electrician-2755683_1920.jpg"
                  alt="Electrician">
             <h3>Eletricistas</h3>       
             <p>Instalações e reparos elétricos.</p>
@@ -214,7 +257,7 @@ Empoderando negócios locais.
 
         <div class="service-card">
            <img src="images/aqu.jfif">
-            <h3>Plumbers</h3>
+            <h3>Encanadores</h3>
             <p>Instalações e reparos de encanamento.</p>
             <a href="services.html?category=plumbers">
                  Encontre Profissionais →
@@ -248,6 +291,9 @@ Empoderando negócios locais.
 </section>
 
 </section>
+
+<script src="slideshow.js"></script>
+</body>
 
 
    <footer class="footer">
