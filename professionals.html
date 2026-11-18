@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Find Professionals | BairroServices</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f8f6;
+            color: #263b32;
+        }
+
+        header {
+            background: #173f32;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h2 {
+            font-size: 25px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px;
+            background: #e5efe8;
+        }
+
+        .hero h1 {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #52675c;
+        }
+
+        .search-section {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .search-section input,
+        .search-section select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccd9d0;
+            border-radius: 8px;
+            background: white;
+            font-size: 15px;
+        }
+
+        .directory {
+            max-width: 1100px;
+            margin: 20px auto 60px;
+            padding: 0 20px;
+        }
+
+        .directory h2 {
+            margin-bottom: 20px;
+        }
+
+        .professional-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        .professional-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            border: 1px solid #e5ebe7;
+        }
+
+        .professional-card h3 {
+            font-size: 21px;
+            margin-bottom: 10px;
+            color: #173f32;
+        }
+
+        .profession {
+            display: inline-block;
+            background: #e5efe8;
+            color: #26734d;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .professional-card p {
+            margin: 10px 0;
+            line-height: 1.5;
+            color: #52675c;
+        }
+
+        .whatsapp-button {
+            display: block;
+            text-align: center;
+            background: #25D366;
+            color: white;
+            padding: 13px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .whatsapp-button:hover {
+            background: #1da851;
+        }
+
+        .message {
+            text-align: center;
+            padding: 35px 15px;
+            color: #64756b;
+            grid-column: 1 / -1;
+        }
+
+        footer {
+            background: #173f32;
+            color: white;
+            text-align: center;
+            padding: 22px;
+        }
+
+        @media (max-width: 600px) {
+            .search-section {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 27px;
+            }
+
+            header {
+                padding: 18px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>BairroServices</h2>
+    <a href="index.html">Home</a>
+</header>
+
+<section class="hero">
+    <h1>Find Professionals Near You</h1>
+    <p>Discover trusted local professionals in your neighbourhood.</p>
+</section>
+
+<section class="search-section">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by profession..."
+    >
+
+    <input
+        type="text"
+        id="neighborhoodInput"
+        placeholder="Enter your neighbourhood..."
+    >
+</section>
+
+<section class="directory">
+    <h2>Available Professionals</h2>
+
+    <div id="professionalList" class="professional-list">
+        <p class="message">Loading professionals...</p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 BairroServices. Connecting neighbourhoods with local professionals.</p>
+</footer>
+
+<script>
+    let professionals = [];
+
+    const professionalList = document.getElementById("professionalList");
+    const searchInput = document.getElementById("searchInput");
+    const neighborhoodInput = document.getElementById("neighborhoodInput");
+
+    // Format profession names for display
+    function formatProfession(profession) {
+        return profession
+            .replaceAll("-", " ")
+            .replace(/\b\w/g, letter => letter.toUpperCase());
+    }
+
+    // Load professionals from the backend
+    async function loadProfessionals() {
+        try {
+            const response = await fetch(
+                "http://localhost:3000/api/professionals"
+            );
+
+            if (!response.ok) {
+                throw new Error("Could not load professionals.");
+            }
+
+            const data = await response.json();
+
+            professionals = data.professionals || [];
+
+            displayProfessionals();
+
+        } catch (error) {
+            console.error(error);
+
+            professionalList.innerHTML = `
+                <p class="message">
+                    Unable to load professionals.
+                    Please check whether the server is running.
+                </p>
+            `;
+        }
+    }
+
+    // Display professional cards
+    function displayProfessionals() {
+        const search = searchInput.value.trim().toLowerCase();
+        const neighborhood = neighborhoodInput.value.trim().toLowerCase();
+
+        const filtered = professionals.filter(person => {
+            const matchesProfession =
+                person.profession.toLowerCase().includes(search);
+
+            const matchesNeighborhood =
+                person.neighborhood.toLowerCase().includes(neighborhood);
+
+            return matchesProfession && matchesNeighborhood;
+        });
+
+        professionalList.innerHTML = "";
+
+        if (filtered.length === 0) {
+            professionalList.innerHTML = `
+                <p class="message">
+                    No professionals found. Try another search.
+                </p>
+            `;
+            return;
+        }
+
+        filtered.forEach(person => {
+            const card = document.createElement("article");
+            card.className = "professional-card";
+
+            const name = document.createElement("h3");
+            name.textContent = person.fullname;
+
+            const profession = document.createElement("span");
+            profession.className = "profession";
+            profession.textContent = formatProfession(person.profession);
+
+            const neighborhoodText = document.createElement("p");
+            neighborhoodText.textContent = "📍 " + person.neighborhood;
+
+            const experience = document.createElement("p");
+            experience.textContent = "Experience: " + person.experience;
+
+            const description = document.createElement("p");
+            description.textContent = person.serviceDescription;
+
+            card.append(name, profession, neighborhoodText, experience, description);
+
+            if (person.whatsappLink) {
+                const whatsapp = document.createElement("a");
+                whatsapp.className = "whatsapp-button";
+                whatsapp.href = person.whatsappLink;
+                whatsapp.target = "_blank";
+                whatsapp.rel = "noopener noreferrer";
+                whatsapp.textContent = "Contact on WhatsApp";
+
+                card.appendChild(whatsapp);
+            }
+
+            professionalList.appendChild(card);
+        });
+    }
+
+    // Search automatically as customers type
+    searchInput.addEventListener("input", displayProfessionals);
+    neighborhoodInput.addEventListener("input", displayProfessionals);
+
+    // Start the directory
+    loadProfessionals();
+</script>
+
+</body>
+</html>

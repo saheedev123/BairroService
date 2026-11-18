@@ -1,17 +1,11 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>BairroServices - Cadastre-se</title>
+    <title>BairroServices - Login</title>
 
     <link rel="stylesheet" href="skill.css">
 </head>
@@ -22,36 +16,44 @@
 
         <h1>Bem-vindo de volta</h1>
 
-        <p>Cadastra sua contaBairroServices account</p>
+        <p>Entre na sua conta BairroServices</p>
 
-        <form>
+        <form id="loginForm">
 
-            <label>Endereço de e-mail</label>
+            <label for="email">Endereço de e-mail</label>
             <input
                 type="email"
+                id="email"
                 placeholder="Digite seu e-mail"
                 required
             >
 
-            <label>SENHA</label>
+            <label for="password">Senha</label>
             <input
                 type="password"
-                placeholder="Digite seu senha"
+                id="password"
+                placeholder="Digite sua senha"
                 required
             >
 
-            <button type="submit"> Entrar</button>
+            <button type="submit" id="loginButton">
+                Entrar
+            </button>
+
+            <p id="loginMessage"></p>
 
         </form>
 
         <p>
-          Não tem uma conta?
+            Não tem uma conta?
             <a href="register.html">Cadastre-se</a>
         </p>
 
         <a href="index.html">Voltar à página inicial</a>
 
     </div>
+
+    <script src="login.js"></script>
 
 </body>
 </html>

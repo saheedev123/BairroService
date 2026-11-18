@@ -1,9 +1,13 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Electricians | BairroServices</title>
+
+    <title>Eletricistas | BairroServices</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,11 +15,13 @@
 
 <header>
     <h2>BairroServices</h2>
-    <a href="index.html">Voltar à página inicial</a>
+    <a href="index.html">Inicial</a>
 </header>
 
 <section class="profession-hero">
+
     <h1>Encontre eletricistas perto de você</h1>
+
     <p>Descubra profissionais de elétrica confiáveis na sua região.</p>
 
     <input
@@ -24,14 +30,21 @@
         placeholder="Pesquisar por nome ou bairro..."
     >
 
-    <button onclick="searchElectricistas()">Search</button>
+    <button onclick="searchElectricistas()">Pesquisar</button>
+
 </section>
 
 <section class="profession-list">
+
     <h2>Eletricistas disponíveis</h2>
 
     <div id="electricistasContainer" class="professional-grid">
+        <p>Carregando eletricistas...</p>
     </div>
+
 </section>
 
 <script src="electricistas.js"></script>
+
+</body>
+</html>

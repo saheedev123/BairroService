@@ -1,91 +1,132 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const accountType = document.getElementById('accountType')
-  const professionSection = document.getElementById('professionSection')
-  const businessSection = document.getElementById('businessSection')
 
-  const profession = document.getElementById('profession')
-  const businessName = document.getElementById('businessName')
-  const businessCategory = document.getElementById('businessCategory')
+document.addEventListener("DOMContentLoaded", function () {
 
-  const registerForm = document.getElementById('registerForm')
+    const accountType = document.getElementById("accountType");
+    const professionSection = document.getElementById("professionSection");
+    const businessSection = document.getElementById("businessSection");
 
-  function updateRegistrationFields() {
-    // Hide both sections first
-    professionSection.style.display = 'none'
-    businessSection.style.display = 'none'
+    const profession = document.getElementById("profession");
+    const businessName = document.getElementById("businessName");
+    const businessCategory = document.getElementById("businessCategory");
 
-    // Remove required fields from hidden sections
-    profession.required = false
-    businessName.required = false
-    businessCategory.required = false
+    const registerForm = document.getElementById("registerForm");
 
-    // Show the correct section
-    if (accountType.value === 'professional') {
-      professionSection.style.display = 'block'
-      profession.required = true
-    } else if (accountType.value === 'business') {
-      businessSection.style.display = 'block'
-      businessName.required = true
-      businessCategory.required = true
-    }
-  }
+    // Show the correct registration fields
+    function updateRegistrationFields() {
 
-  // Update fields when account type changes
-  accountType.addEventListener('change', updateRegistrationFields)
+        professionSection.style.display = "none";
+        businessSection.style.display = "none";
 
-  // Also update fields when the page first opens
-  updateRegistrationFields()
+        profession.required = false;
+        businessName.required = false;
+        businessCategory.required = false;
 
-  // Handle form submission
-  registerForm.addEventListener('submit', function (event) {
-    event.preventDefault()
+        if (accountType.value === "professional") {
+            professionSection.style.display = "block";
+            profession.required = true;
+        }
 
-    const password = document.getElementById('password').value
-    const confirmPassword = document.getElementById('confirmPassword').value
-
-    if (password !== confirmPassword) {
-      alert('As senhas não coincidem!')
-      return
+        if (accountType.value === "business") {
+            businessSection.style.display = "block";
+            businessName.required = true;
+            businessCategory.required = true;
+        }
     }
 
-    if (!accountType.value) {
-      alert('Por favor, escolha o tipo de conta.')
-      return
-    }
+    accountType.addEventListener("change", updateRegistrationFields);
+    updateRegistrationFields();
 
-    if (accountType.value === 'professional' && !profession.value) {
-      alert('Por favor, escolha sua profissão.')
-      return
-    }
+    // Registration form submission
+    registerForm.addEventListener("submit", async function (event) {
 
-    if (
-      accountType.value === 'business' &&
-      (!businessName.value.trim() || !businessCategory.value)
-    ) {
-      alert('Por favor, preencha os dados do seu negócio.')
-      return
-    }
+        event.preventDefault();
 
-    const userProfile = {
-      fullname: document.getElementById('fullname').value,
-      email: document.getElementById('email').value,
-      phone: document.getElementById('phone').value,
-      neighborhood: document.getElementById('neighborhood').value,
-      accountType: accountType.value,
-      profession: profession.value,
-      businessName: businessName.value,
-      businessCategory: businessCategory.value,
-      businessDescription: document.getElementById('businessDescription').value,
-    }
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
 
-    sessionStorage.setItem('bairroUser', JSON.stringify(userProfile))
+        if (password !== confirmPassword) {
+            alert("Your passwords do not match!");
+            return;
+        }
 
-    alert('Cadastro validado com sucesso!')
+        const userData = {
+            fullname: document.getElementById("fullname").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            phone: document.getElementById("phone").value.trim(),
+            neighborhood: document.getElementById("neighborhood").value.trim(),
+            accountType: accountType.value,
+            profession: profession.value,
+            businessName: businessName.value.trim(),
+            businessCategory: businessCategory.value,
+            businessDescription: document.getElementById("businessDescription").value.trim(),
+            password: password
+        };
 
-    if (accountType.value === 'professional') {
-      window.location.href = 'professional-dashboard.html'
-    } else {
-      window.location.href = 'business-dashboard.html'
-    }
-  })
-})
+        try {
+
+            const response = await fetch("http://localhost:3000/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userData)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                alert(result.message || "Registration failed.");
+                return;
+            }
+
+          
+console.log("Registration successful!");
+console.log("Account type:", userData.accountType);
+
+// Save the registered user's profile in this browser session
+const dashboardUser = {
+    fullname: userData.fullname,
+    email: userData.email,
+    phone: userData.phone,
+    neighborhood: userData.neighborhood,
+    accountType: userData.accountType,
+    profession: userData.profession,
+    businessName: userData.businessName,
+    businessCategory: userData.businessCategory,
+    businessDescription: userData.businessDescription
+};
+
+sessionStorage.setItem(
+    "bairroUser",
+    JSON.stringify(dashboardUser)
+);
+
+alert("Registration successful! Welcome to BairroServices.");
+
+
+            // Redirect users to their dashboards
+            if (userData.accountType === "professional") {
+
+                window.location.href = "./professional-dashboard.html";
+
+            } else if (userData.accountType === "business") {
+
+                window.location.href = "./smallbusiness-dashboard.html";
+
+            } else {
+
+                alert("Account type not recognized!");
+
+            }
+
+        } catch (error) {
+
+            console.error("Registration error:", error);
+
+            alert("Unable to connect to the server. Please check your backend.");
+
+        }
+
+    });
+
+});

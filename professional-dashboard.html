@@ -2,173 +2,305 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Dashboard | BairroServices</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<title>Professional Dashboard | BairroServices</title>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f7f3;
-            color: #263b30;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        header {
-            background: #173f32;
-            color: white;
-            padding: 20px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f7f4;
+    color: #263b30;
+}
 
-        header a {
-            color: white;
-            text-decoration: none;
-        }
+header {
+    background: #173f32;
+    color: white;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .dashboard {
-            max-width: 950px;
-            margin: 40px auto;
-            padding: 20px;
-        }
+header a {
+    color: white;
+    text-decoration: none;
+}
 
-        .welcome {
-            margin-bottom: 25px;
-        }
+.dashboard {
+    max-width: 1050px;
+    margin: 35px auto;
+    padding: 20px;
+}
 
-        .welcome h1 {
-            margin-bottom: 10px;
-        }
+.welcome {
+    margin-bottom: 25px;
+}
 
-        .profile-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-            margin-bottom: 25px;
-        }
+.welcome h1 {
+    margin-bottom: 10px;
+}
 
-        .profile-card h2 {
-            margin-bottom: 20px;
-            color: #26734d;
-        }
+.profile-card {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+}
 
-        .profile-card p {
-            margin: 12px 0;
-            line-height: 1.5;
-        }
+.profile-card h2 {
+    color: #26734d;
+    margin-bottom: 20px;
+}
 
-        .description {
-            margin-top: 20px;
-        }
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 30px;
+}
 
-        textarea {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 7px;
-            min-height: 100px;
-            font-family: Arial, sans-serif;
-        }
+.profile-image {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #e5efe8;
+    background: #e5efe8;
+}
 
-        button {
-            background: #26734d;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 7px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
+.upload-label {
+    display: inline-block;
+    background: #26734d;
+    color: white;
+    padding: 11px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-top: 12px;
+}
 
-        button:hover {
-            background: #173f32;
-        }
+input[type="file"] {
+    display: none;
+}
 
-        .logout {
-            background: #a83232;
-        }
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
 
-        .logout:hover {
-            background: #812525;
-        }
+.form-group {
+    margin-bottom: 15px;
+}
 
-        .notice {
-            background: #e5efe8;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
 
-        @media (max-width: 600px) {
-            header {
-                padding: 18px;
-            }
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d5ded8;
+    border-radius: 7px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
 
-            .dashboard {
-                margin: 20px auto;
-            }
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
 
-            .profile-card {
-                padding: 20px;
-            }
-        }
-    </style>
+button {
+    background: #26734d;
+    color: white;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 12px;
+}
+
+button:hover {
+    background: #173f32;
+}
+
+.notice {
+    background: #e5efe8;
+    padding: 22px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.logout {
+    background: #a83232;
+}
+
+.logout:hover {
+    background: #812525;
+}
+
+@media(max-width: 650px) {
+    header {
+        padding: 18px;
+    }
+
+    .dashboard {
+        margin: 15px auto;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .profile-card {
+        padding: 20px;
+    }
+
+    .profile-top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <header>
     <h2>BairroServices</h2>
-    <a href="index.html">Voltar à página inicial</a>
+    <a href="index.html">Página inicial</a>
 </header>
 
 <main class="dashboard">
 
     <section class="welcome">
         <h1>Bem-vindo ao seu painel profissional!</h1>
-        <p>Gerencie suas informações e apresente seus serviços aos clientes.</p>
+        <p>Complete seu perfil para que seus vizinhos possam conhecer seus serviços.</p>
     </section>
 
     <section class="profile-card">
-        <h2>Meu Perfil Profissional</h2>
 
-        <p><strong>Nome:</strong> <span id="userName"></span></p>
-        <p><strong>Profissão:</strong> <span id="userProfession"></span></p>
-        <p><strong>Bairro:</strong> <span id="userNeighborhood"></span></p>
-        <p><strong>Email:</strong> <span id="userEmail"></span></p>
-        <p><strong>Telefone:</strong> <span id="userPhone"></span></p>
+        <h2>Minha foto de perfil</h2>
 
-        <div class="description">
-            <label for="serviceDescription">
-                <strong>Descreva seus serviços:</strong>
-            </label>
+        <div class="profile-top">
 
-            <textarea
-                id="serviceDescription"
-                placeholder="Conte aos clientes quais serviços você oferece..."
-            ></textarea>
+            <img
+                id="profilePreview"
+                class="profile-image"
+                src="images/default-profile.png"
+                alt="Foto de perfil"
+            >
 
-            <button onclick="saveDescription()">
-                Salvar descrição
-            </button>
+            <div>
+                <h3>Adicione sua foto</h3>
+                <p>Use uma foto profissional para ajudar os clientes a conhecer você.</p>
+
+                <label class="upload-label" for="profilePhoto">
+                    Escolher foto
+                </label>
+
+<input
+    type="file"
+    id="profilePhoto"
+    accept="image/jpeg,image/png,image/webp"
+>
+
+<button type="button" id="uploadPhotoButton">
+    Enviar foto de perfil
+</button>
+
+<p id="photoStatus"></p>
+            </div>
+
         </div>
+
+    </section>
+
+    <section class="profile-card">
+
+        <h2>Informações profissionais</h2>
+
+        <form id="profileForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="fullName">Nome completo</label>
+                    <input type="text" id="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Telefone / WhatsApp</label>
+                    <input type="tel" id="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="neighborhood">Seu bairro</label>
+                    <input type="text" id="neighborhood" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="profession">Profissão</label>
+                    <select id="profession" required>
+                        <option value="">Selecione sua profissão</option>
+                        <option value="electrician">Eletricista</option>
+                        <option value="plumber">Encanador</option>
+                        <option value="carpenter">Carpinteiro</option>
+                        <option value="cleaning">Serviços de limpeza</option>
+                        <option value="home-repairs">Reparos domésticos</option>
+                        <option value="other">Outro</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Experiência profissional</label>
+                <input
+                    type="text"
+                    id="experience"
+                    placeholder="Ex: 5 anos de experiência"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="serviceDescription">Descreva seus serviços</label>
+                <textarea
+                    id="serviceDescription"
+                    placeholder="Conte aos clientes quais serviços você oferece..."
+                    required
+                ></textarea>
+            </div>
+
+            <button type="submit">Salvar meu perfil</button>
+
+        </form>
+
     </section>
 
     <section class="notice">
-        <h3>Próximo passo</h3>
+        <h3>Seu próximo passo</h3>
         <p>
-            Em breve, você poderá aparecer na lista de profissionais
-            do BairroServices para que clientes encontrem e contratem
-            seus serviços.
+            Complete seu perfil para que seus clientes possam
+            encontrar seus serviços no BairroServices.
         </p>
     </section>
 
@@ -176,57 +308,283 @@
 
 </main>
 
+
 <script>
-    const user = JSON.parse(sessionStorage.getItem("bairroUser"));
 
-    if (!user || user.accountType !== "professional") {
-        alert("Faça seu cadastro como profissional primeiro.");
-        window.location.href = "register.html";
-    } else {
-        document.getElementById("userName").textContent =
-            user.fullname || "";
+let user = null;
 
-        document.getElementById("userNeighborhood").textContent =
-            user.neighborhood || "";
+// Protect the professional dashboard
+async function loadDashboard() {
 
-        document.getElementById("userEmail").textContent =
-            user.email || "";
+    const token = sessionStorage.getItem("bairroToken");
+    const cachedUser = JSON.parse(
+        sessionStorage.getItem("bairroUser") || "null"
+    );
 
-        document.getElementById("userPhone").textContent =
-            user.phone || "";
-
-        const professions = {
-            electrician: "Eletricista",
-            plumber: "Encanador",
-            carpenter: "Carpinteiro",
-            cleaning: "Serviços de limpeza",
-            "home-repairs": "Reparos domésticos",
-            other: "Outro"
-        };
-
-        document.getElementById("userProfession").textContent =
-            professions[user.profession] || user.profession || "Não informado";
-
-        document.getElementById("serviceDescription").value =
-            user.serviceDescription || "";
+    if (!token) {
+        alert("Faça login para acessar seu painel.");
+        window.location.href = "login.html";
+        return;
     }
 
-    function saveDescription() {
-        const description =
-            document.getElementById("serviceDescription").value;
+    try {
+        const response = await fetch("http://localhost:3000/api/me", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
 
-        user.serviceDescription = description;
+       const responseText = await response.text();
+
+let data;
+
+try {
+    data = JSON.parse(responseText);
+} catch (error) {
+    console.error("Raw server response:", responseText);
+    throw new Error("The server returned an invalid response. Check the backend.");
+}
+
+        if (!response.ok) {
+            if (response.status === 401 || response.status === 403) {
+                sessionStorage.removeItem("bairroToken");
+                sessionStorage.removeItem("bairroUser");
+
+                alert("Sua sessão expirou. Faça login novamente.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            throw new Error(data.message || "Não foi possível carregar seu perfil.");
+        }
+
+        if (!data.user || data.user.accountType !== "professional") {
+            alert("Esta conta não é uma conta profissional.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        // Backend information takes priority
+        user = {
+            ...cachedUser,
+            ...data.user
+        };
+
+        sessionStorage.setItem(
+            "bairroUser",
+            JSON.stringify(user)
+        );
+
+        // Load profile information
+        document.getElementById("fullName").value = user.fullname || "";
+        document.getElementById("email").value = user.email || "";
+        document.getElementById("phone").value = user.phone || "";
+        document.getElementById("neighborhood").value = user.neighborhood || "";
+        document.getElementById("profession").value = user.profession || "";
+        document.getElementById("experience").value = user.experience || "";
+        document.getElementById("serviceDescription").value =
+            user.serviceDescription || "";
+
+      if (user.photoUrl) {
+    document.getElementById("profilePreview").src =
+        "http://localhost:3000" + user.photoUrl;
+}
+        // Show dashboard only after successful authentication
+        document.querySelector(".dashboard").style.display = "block";
+
+    } catch (error) {
+        console.error("Dashboard error:", error);
+
+        alert("Não foi possível connectar ao servidor. Verifique se o backend está funcionando.");
+    }
+}
+
+
+// Profile photo preview
+document.getElementById("profilePhoto").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+        alert("Escolha uma imagem JPG, PNG ou WEBP.");
+        event.target.value = "";
+        return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+        alert("A imagem deve ter no máximo 5 MB.");
+        event.target.value = "";
+        return;
+    }
+
+    // Preview only; permanent saving happens after upload
+    const previewURL = URL.createObjectURL(file);
+
+    document.getElementById("profilePreview").src = previewURL;
+});
+// Upload profile picture to the backend
+document.getElementById("uploadPhotoButton").addEventListener("click", async function() {
+
+    const token = sessionStorage.getItem("bairroToken");
+    const fileInput = document.getElementById("profilePhoto");
+    const status = document.getElementById("photoStatus");
+    const uploadButton = this;
+
+    const file = fileInput.files[0];
+
+    if (!token) {
+        alert("Faça login novamente.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    if (!file) {
+        alert("Primeiro escolha uma foto.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("profilePhoto", file);
+
+    uploadButton.disabled = true;
+    status.textContent = "Enviando sua foto...";
+
+    try {
+        const response = await fetch(
+            "http://localhost:3000/api/profile/photo",
+            {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                },
+                body: formData
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Não foi possível enviar a foto.");
+        }
+
+        // Save the permanent photo URL in the browser session
+        user.photoUrl = data.photoUrl;
+
+        sessionStorage.setItem(
+            "bairroUser",
+            JSON.stringify(user)
+        );
+
+        // Display the saved image from the server
+        document.getElementById("profilePreview").src =
+            "http://localhost:3000" + data.photoUrl;
+
+        status.textContent = "Sua foto foi salva com sucesso!";
+
+        fileInput.value = "";
+
+    } catch (error) {
+        console.error("Photo upload error:", error);
+        status.textContent = error.message;
+
+    } finally {
+        uploadButton.disabled = false;
+    }
+});
+
+
+// Save professional profile (temporary browser storage)
+
+document.getElementById("profileForm").addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const token = sessionStorage.getItem("bairroToken");
+
+    if (!user || !token) {
+        alert("Faça login novamente.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    const updatedProfile = {
+        fullName: document.getElementById("fullName").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        neighborhood: document.getElementById("neighborhood").value.trim(),
+        profession: document.getElementById("profession").value,
+        experience: document.getElementById("experience").value.trim(),
+        serviceDescription: document.getElementById("serviceDescription").value.trim()
+    };
+
+    const saveButton = event.submitter;
+    if (saveButton) saveButton.disabled = true;
+
+    try {
+        const response = await fetch("http://localhost:3000/api/profile", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(updatedProfile)
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            if (response.status === 401 || response.status === 403) {
+                alert("Sua sessão expirou. Faça login novamente.");
+                sessionStorage.removeItem("bairroToken");
+                sessionStorage.removeItem("bairroUser");
+                window.location.href = "login.html";
+                return;
+            }
+
+            throw new Error(data.message || "Não foi possível salvar seu perfil.");
+        }
+
+        // Update the browser's user information
+        user = { ...user, ...data.user };
+
+        // Keep the selected photo locally for now
+       
+                    sessionStorage.setItem("bairroUser", JSON.stringify(user));
+             
 
         sessionStorage.setItem("bairroUser", JSON.stringify(user));
 
-        alert("Descrição salva com sucesso!");
-    }
+        alert("Seu perfil foi salvo permanentemente com sucesso!");
 
-    function logout() {
-        sessionStorage.removeItem("bairroUser");
-        window.location.href = "login.html";
+    } catch (error) {
+        console.error("Profile saving error:", error);
+        alert(error.message || "Erro ao salvar seu perfil. Verifique sua conexão.");
+    } finally {
+        if (saveButton) saveButton.disabled = false;
     }
+});
+
+
+// Logout
+function logout() {
+    sessionStorage.removeItem("bairroToken");
+    sessionStorage.removeItem("bairroUser");
+
+    window.location.href = "login.html";
+}
+
+
+// Start dashboard authentication
+document.querySelector(".dashboard").style.display = "none";
+loadDashboard();
+
 </script>
-
 </body>
 </html>
