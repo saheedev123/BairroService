@@ -111,3 +111,215 @@ button {
         padding: 30px 5%;
     }
 }
+
+
+
+
+/* Professional listing cards */
+.professional-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.professional-card .professional-photo {
+    width: 100%;
+    height: 220px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+    margin: 0;
+    border: none;
+}
+
+.professional-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.professional-info h3 {
+    color: #173f32;
+    margin-bottom: 8px;
+    font-size: 19px;
+}
+
+.profession-label {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.review-summary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 5px 0 15px;
+    font-size: 13px;
+}
+
+.review-stars {
+    color: #d4a72c;
+    letter-spacing: 2px;
+    font-size: 17px;
+}
+
+.review-text {
+    color: #777;
+}
+
+.view-profile-button {
+    display: block;
+    width: 100%;
+    background: #26734d;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 13px;
+    border-radius: 6px;
+    margin-top: auto;
+}
+
+.view-profile-button:hover {
+    background: #173f32;
+}
+
+/* Public professional profile page */
+.profile-page {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.back-link {
+    display: inline-block;
+    color: #26734d;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.public-profile {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+}
+
+.public-profile-photo {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.public-profile-content {
+    padding: 30px;
+}
+
+.public-profile-content h1 {
+    color: #173f32;
+    margin-bottom: 10px;
+}
+
+.public-profile-content h2 {
+    color: #173f32;
+    margin: 25px 0 10px;
+    font-size: 20px;
+}
+
+.public-profile-content p {
+    line-height: 1.7;
+    color: #555;
+}
+
+.profile-profession {
+    color: #26734d !important;
+    font-weight: bold;
+}
+
+.profile-neighborhood {
+    margin: 10px 0;
+}
+
+.profile-whatsapp {
+    display: block;
+    background: #26734d;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 15px;
+    border-radius: 7px;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.profile-whatsapp:hover {
+    background: #173f32;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 600px) {
+    .professional-card .professional-photo {
+        height: 200px;
+    }
+
+    .public-profile-photo {
+        height: 240px;
+    }
+
+    .public-profile-content {
+        padding: 20px;
+    }
+}
+
+/* Make professional cards more compact */
+.professional-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+    justify-content: center;
+    gap: 25px;
+}
+
+.professional-card {
+    width: 100%;
+    max-width: 260px;
+    overflow: hidden;
+}
+
+/* Professional picture */
+.professional-card .professional-photo {
+    width: 100% !important;
+    height: 210px !important;
+    max-width: 100% !important;
+    aspect-ratio: auto;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+    display: block;
+    margin: 0;
+}
+
+/* Control the photo size on the public profile page */
+.public-profile-photo {
+    display: block;
+    width: 100% !important;
+    max-width: 360px;
+    height: 360px !important;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto 20px;
+    border-radius: 10px;
+}
+
+/* Mobile adjustment */
+@media (max-width: 600px) {
+    .public-profile-photo {
+        max-width: 300px;
+        height: 300px !important;
+    }
+}

@@ -2,14 +2,16 @@
 const container = document.getElementById("electricistasContainer");
 
 let electricians = [];
+const BACKEND_URL = `http://${window.location.hostname}:3000`;
+const DEFAULT_PHOTO = "images/default-profile.png";
 
-// Load registered electricians from the backend
+// Load registered electricians
 async function loadElectricistas() {
     try {
         container.innerHTML = "<p>Carregando eletricistas...</p>";
 
         const response = await fetch(
-            "http://localhost:3000/api/professionals"
+            `${BACKEND_URL}/api/professionals`
         );
 
         if (!response.ok) {
@@ -18,16 +20,14 @@ async function loadElectricistas() {
 
         const data = await response.json();
 
-        // Only show registered electricians
         electricians = (data.professionals || []).filter(person =>
-            person.profession.toLowerCase() === "electrician"
+            (person.profession || "").toLowerCase() === "electrician"
         );
 
         displayElectricians(electricians);
 
     } catch (error) {
         console.error("Erro:", error);
-
         container.innerHTML = `
             <p>Não foi possível carregar os eletricistas.
             Verifique se o servidor está funcionando.</p>
@@ -36,9 +36,8 @@ async function loadElectricistas() {
 }
 
 
-// Display electrician cards
+// Display professional cards
 function displayElectricians(list) {
-
     container.innerHTML = "";
 
     if (list.length === 0) {
@@ -49,68 +48,81 @@ function displayElectricians(list) {
     }
 
     list.forEach(person => {
-
         const card = document.createElement("div");
         card.className = "professional-card";
 
+        // Profile picture
+        const photo = document.createElement("img");
+        photo.className = "professional-photo";
+        photo.src = person.photoUrl
+            ? `${BACKEND_URL}${person.photoUrl}`
+            : DEFAULT_PHOTO;
+
+        photo.alt = `Foto de ${person.fullname}`;
+
+        photo.onerror = function () {
+            this.onerror = null;
+            this.src = DEFAULT_PHOTO;
+        };
+
+        // Card information
+        const info = document.createElement("div");
+        info.className = "professional-info";
+
         const name = document.createElement("h3");
-        name.textContent = person.fullname;
+        name.textContent = person.fullname || "Profissional";
 
-        const location = document.createElement("p");
-        location.textContent = "📍 " + person.neighborhood;
+        const profession = document.createElement("p");
+        profession.className = "profession-label";
+        profession.textContent = "Eletricista";
 
-        const experience = document.createElement("p");
-        experience.textContent = "Experiência: " + person.experience;
+        // Reviews placeholder until real reviews are implemented
+        const review = document.createElement("div");
+        review.className = "review-summary";
 
-        const specialty = document.createElement("p");
-        specialty.textContent = person.serviceDescription;
+        const stars = document.createElement("span");
+        stars.className = "review-stars";
+        stars.textContent = "☆☆☆☆☆";
 
-        card.append(name, location, experience, specialty);
+        const reviewText = document.createElement("span");
+        reviewText.className = "review-text";
+        reviewText.textContent = "Ainda sem avaliações";
 
-        if (person.whatsappLink) {
-            const whatsappButton = document.createElement("a");
+        review.append(stars, reviewText);
 
-            whatsappButton.className = "whatsapp-button";
-            whatsappButton.href =
-                person.whatsappLink +
-                "?text=" +
-                encodeURIComponent(
-                    `Olá ${person.fullname}, encontrei seu perfil no BairroServices e gostaria de saber mais sobre seus serviços.`
-                );
+        // View profile link
+        const viewProfile = document.createElement("a");
+        viewProfile.className = "view-profile-button";
+        viewProfile.textContent = "Ver perfil";
+        viewProfile.href =
+            `professional-profile.html?id=${encodeURIComponent(person.id)}`;
 
-            whatsappButton.target = "_blank";
-            whatsappButton.rel = "noopener noreferrer";
-            whatsappButton.textContent = "Contactar pelo WhatsApp";
-
-            card.appendChild(whatsappButton);
-        }
+        info.append(name, profession, review, viewProfile);
+        card.append(photo, info);
 
         container.appendChild(card);
     });
 }
 
 
-// Search electricians by name, neighbourhood or service
+// Search by name, neighborhood or description
 function searchElectricistas() {
-
     const search = document
         .getElementById("searchInput")
         .value.trim()
         .toLowerCase();
 
     const results = electricians.filter(person => {
-
         return (
-            person.fullname.toLowerCase().includes(search) ||
-            person.neighborhood.toLowerCase().includes(search) ||
-            person.serviceDescription.toLowerCase().includes(search)
+            (person.fullname || "").toLowerCase().includes(search) ||
+            (person.neighborhood || "").toLowerCase().includes(search) ||
+            (person.serviceDescription || "").toLowerCase().includes(search)
         );
-
     });
 
     displayElectricians(results);
 }
 
 
-// Load the directory when the page opens
+// Load directory when page opens
 loadElectricistas();
