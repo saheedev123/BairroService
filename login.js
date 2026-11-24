@@ -55,15 +55,24 @@ try {
 
         loginMessage.style.color = "green";
         loginMessage.textContent = "Login realizado com sucesso!";
+// Redirect according to account type
+if (data.user.accountType === "customer") {
 
-        // Redirect according to account type
-        if (data.user.accountType === "professional") {
-            window.location.href = "professional-dashboard.html";
-        } else if (data.user.accountType === "business") {
-            window.location.href = "smallbusiness-dashboard.html";
-        } else {
-            throw new Error("Tipo de conta inválido.");
-        }
+    window.location.href = "customer-dashboard.html";
+
+} else if (data.user.accountType === "professional") {
+
+    window.location.href = "professional-dashboard.html";
+
+} else if (data.user.accountType === "business") {
+
+    window.location.href = "smallbusiness-dashboard.html";
+
+} else {
+
+    throw new Error("Tipo de conta inválido.");
+
+}
 
     } catch (error) {
         loginMessage.style.color = "red";

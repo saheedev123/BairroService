@@ -992,3 +992,786 @@ font-family: sans-serif;
         font-size: 15px;
     }
 }
+
+/* =====================================
+   BAIRROSERVICES NEW HOMEPAGE HERO
+===================================== */
+
+.bs-hero-shell {
+    width: 100%;
+    min-height: 690px;
+    padding: 25px 6% 55px;
+    color: #ffffff;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 85% 25%,
+            rgba(116, 183, 139, 0.25),
+            transparent 32%
+        ),
+        linear-gradient(
+            120deg,
+            #0b2119 0%,
+            #173f32 55%,
+            #245d45 100%
+        );
+}
+
+/* Navigation */
+
+.bs-nav {
+    max-width: 1300px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.bs-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.bs-brand img {
+    width: 78px;
+    height: 72px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.bs-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.bs-nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.2s ease;
+}
+
+.bs-nav-links a:hover {
+    color: #e6ed7a;
+}
+
+/* Hero layout */
+
+.bs-hero-layout {
+    max-width: 1300px;
+    margin: 55px auto 0;
+
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+
+    align-items: center;
+    gap: 40px;
+}
+
+.bs-hero-copy {
+    max-width: 650px;
+}
+
+.bs-eyebrow {
+    display: inline-block;
+    color: #dce78a;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 22px;
+}
+
+.bs-hero-copy h1 {
+    color: white;
+    font-size: clamp(42px, 5.2vw, 72px);
+    line-height: 1.08;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.bs-hero-copy h1 span {
+    display: block;
+    color: #e1e997;
+}
+
+.bs-hero-copy h2 {
+    color: #ffffff;
+    font-size: clamp(25px, 3vw, 39px);
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 25px;
+}
+
+.bs-hero-description {
+    color: rgba(255,255,255,0.85);
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 560px;
+    margin-bottom: 35px;
+}
+
+/* Hero buttons */
+
+.bs-hero-buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+
+.bs-btn {
+    min-height: 53px;
+    padding: 15px 23px;
+    border-radius: 50px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+
+    transition: all 0.25s ease;
+}
+
+.bs-btn-primary {
+    background: #e1ed65;
+    color: #173f32;
+}
+
+.bs-btn-primary:hover {
+    background: #eff79c;
+    transform: translateY(-3px);
+}
+
+.bs-btn-outline {
+    color: white;
+    border: 1px solid rgba(255,255,255,0.7);
+}
+
+.bs-btn-outline:hover {
+    background: white;
+    color: #173f32;
+}
+
+.bs-btn-business {
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.25);
+}
+
+.bs-btn-business:hover {
+    background: rgba(255,255,255,0.23);
+    transform: translateY(-3px);
+}
+
+/* Hero image collage */
+
+.bs-hero-visual {
+    position: relative;
+    min-height: 470px;
+    width: 100%;
+}
+
+.bs-hero-image-main {
+    position: absolute;
+    width: 69%;
+    height: 390px;
+    right: 7%;
+    top: 25px;
+
+    border-radius: 22px;
+    overflow: hidden;
+
+    border: 5px solid rgba(255,255,255,0.18);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+
+    transform: rotate(2deg);
+}
+
+.bs-hero-image-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bs-floating-image {
+    position: absolute;
+    background: white;
+    padding: 8px 8px 12px;
+    border-radius: 14px;
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.28);
+
+    color: #173f32;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.bs-floating-image img {
+    display: block;
+    width: 145px;
+    height: 105px;
+    object-fit: cover;
+    border-radius: 9px;
+    margin-bottom: 8px;
+}
+
+.bs-floating-electrician {
+    left: 0;
+    top: 75px;
+    transform: rotate(-6deg);
+}
+
+.bs-floating-plumber {
+    right: 0;
+    bottom: 12px;
+    transform: rotate(5deg);
+}
+
+.bs-hero-bubble {
+    position: absolute;
+    left: 3%;
+    bottom: 30px;
+
+    padding: 18px 23px;
+    background: #e1ed65;
+    color: #173f32;
+
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    transform: rotate(-3deg);
+}
+
+.bs-hero-bubble span {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bs-hero-bubble strong {
+    font-size: 15px;
+}
+
+/* Responsive design */
+
+@media (max-width: 950px) {
+
+    .bs-hero-layout {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 45px;
+    }
+
+    .bs-hero-copy {
+        max-width: 750px;
+    }
+
+    .bs-hero-visual {
+        max-width: 620px;
+        margin: auto;
+    }
+
+    .bs-hero-shell {
+        padding-bottom: 35px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .bs-hero-shell {
+        padding: 20px 5% 35px;
+    }
+
+    .bs-nav {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .bs-brand img {
+        width: 65px;
+        height: 60px;
+    }
+
+    .bs-nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    .bs-nav-links a {
+        font-size: 13px;
+    }
+
+    .bs-hero-layout {
+        margin-top: 40px;
+    }
+
+    .bs-hero-copy h1 {
+        font-size: 43px;
+    }
+
+    .bs-hero-copy h2 {
+        font-size: 26px;
+    }
+
+    .bs-hero-description {
+        font-size: 14px;
+    }
+
+    .bs-hero-buttons {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .bs-btn {
+        width: 100%;
+    }
+
+    .bs-hero-visual {
+        min-height: 350px;
+    }
+
+    .bs-hero-image-main {
+        width: 72%;
+        height: 275px;
+        right: 8%;
+        top: 20px;
+    }
+
+    .bs-floating-image img {
+        width: 95px;
+        height: 75px;
+    }
+
+    .bs-floating-image {
+        font-size: 10px;
+    }
+
+    .bs-floating-electrician {
+        top: 75px;
+    }
+
+    .bs-hero-bubble {
+        left: 0;
+        bottom: 4px;
+        padding: 12px 15px;
+    }
+
+    .bs-hero-bubble strong {
+        font-size: 12px;
+    }
+
+}
+
+/* =====================================
+   BAIRROSERVICES NEW HOMEPAGE HERO
+===================================== */
+
+.bs-hero-shell {
+    width: 100%;
+    min-height: 690px;
+    padding: 25px 6% 55px;
+    color: #ffffff;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 85% 25%,
+            rgba(116, 183, 139, 0.25),
+            transparent 32%
+        ),
+        linear-gradient(
+            120deg,
+            #0b2119 0%,
+            #173f32 55%,
+            #245d45 100%
+        );
+}
+
+/* Navigation */
+
+.bs-nav {
+    max-width: 1300px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.bs-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.bs-brand img {
+    width: 120px;
+    height: 105px;
+    object-fit: contain;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.bs-brand {
+    font-size: 25px;
+    gap: 15px;
+}
+
+.bs-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.bs-nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.2s ease;
+}
+
+.bs-nav-links a:hover {
+    color: #e6ed7a;
+}
+
+/* Hero layout */
+
+.bs-hero-layout {
+    max-width: 1300px;
+    margin: 55px auto 0;
+
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+
+    align-items: center;
+    gap: 40px;
+}
+
+.bs-hero-copy {
+    max-width: 650px;
+}
+
+.bs-eyebrow {
+    display: inline-block;
+    color: #dce78a;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 22px;
+}
+
+.bs-hero-copy h1 {
+    color: white;
+    font-size: clamp(42px, 5.2vw, 72px);
+    line-height: 1.08;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.bs-hero-copy h1 span {
+    display: block;
+    color: #e1e997;
+}
+
+.bs-hero-copy h2 {
+    color: #ffffff;
+    font-size: clamp(25px, 3vw, 39px);
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 25px;
+}
+
+.bs-hero-description {
+    color: rgba(255,255,255,0.85);
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 560px;
+    margin-bottom: 35px;
+}
+
+/* Hero buttons */
+
+.bs-hero-buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+
+.bs-btn {
+    min-height: 53px;
+    padding: 15px 23px;
+    border-radius: 50px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+
+    transition: all 0.25s ease;
+}
+
+.bs-btn-primary {
+    background: #e1ed65;
+    color: #173f32;
+}
+
+.bs-btn-primary:hover {
+    background: #eff79c;
+    transform: translateY(-3px);
+}
+
+.bs-btn-outline {
+    color: white;
+    border: 1px solid rgba(255,255,255,0.7);
+}
+
+.bs-btn-outline:hover {
+    background: white;
+    color: #173f32;
+}
+
+.bs-btn-business {
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.25);
+}
+
+.bs-btn-business:hover {
+    background: rgba(255,255,255,0.23);
+    transform: translateY(-3px);
+}
+
+/* Hero image collage */
+
+.bs-hero-visual {
+    position: relative;
+    min-height: 470px;
+    width: 100%;
+}
+
+.bs-hero-image-main {
+    position: absolute;
+    width: 69%;
+    height: 390px;
+    right: 7%;
+    top: 25px;
+
+    border-radius: 22px;
+    overflow: hidden;
+
+    border: 5px solid rgba(255,255,255,0.18);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+
+    transform: rotate(2deg);
+}
+
+.bs-hero-image-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bs-floating-image {
+    position: absolute;
+    background: white;
+    padding: 8px 8px 12px;
+    border-radius: 14px;
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.28);
+
+    color: #173f32;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.bs-floating-image img {
+    display: block;
+    width: 145px;
+    height: 105px;
+    object-fit: cover;
+    border-radius: 9px;
+    margin-bottom: 8px;
+}
+
+.bs-floating-electrician {
+    left: 0;
+    top: 75px;
+    transform: rotate(-6deg);
+}
+
+.bs-floating-plumber {
+    right: 0;
+    bottom: 12px;
+    transform: rotate(5deg);
+}
+
+.bs-hero-bubble {
+    position: absolute;
+    left: 3%;
+    bottom: 30px;
+
+    padding: 18px 23px;
+    background: #e1ed65;
+    color: #173f32;
+
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    transform: rotate(-3deg);
+}
+
+.bs-hero-bubble span {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bs-hero-bubble strong {
+    font-size: 15px;
+}
+
+/* Responsive design */
+
+@media (max-width: 950px) {
+
+    .bs-hero-layout {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 45px;
+    }
+
+    .bs-hero-copy {
+        max-width: 750px;
+    }
+
+    .bs-hero-visual {
+        max-width: 620px;
+        margin: auto;
+    }
+
+    .bs-hero-shell {
+        padding-bottom: 35px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .bs-hero-shell {
+        padding: 20px 5% 35px;
+    }
+
+    .bs-nav {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .bs-brand img {
+    width: 90px;
+    height: 82px;
+}
+
+.bs-brand {
+    font-size: 25px;
+    gap: 15px;
+}
+
+    .bs-nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    .bs-nav-links a {
+        font-size: 13px;
+    }
+
+    .bs-hero-layout {
+        margin-top: 40px;
+    }
+
+    .bs-hero-copy h1 {
+        font-size: 43px;
+    }
+
+    .bs-hero-copy h2 {
+        font-size: 26px;
+    }
+
+    .bs-hero-description {
+        font-size: 14px;
+    }
+
+    .bs-hero-buttons {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .bs-btn {
+        width: 100%;
+    }
+
+    .bs-hero-visual {
+        min-height: 350px;
+    }
+
+    .bs-hero-image-main {
+        width: 72%;
+        height: 275px;
+        right: 8%;
+        top: 20px;
+    }
+
+    .bs-floating-image img {
+        width: 95px;
+        height: 75px;
+    }
+
+    .bs-floating-image {
+        font-size: 10px;
+    }
+
+    .bs-floating-electrician {
+        top: 75px;
+    }
+
+    .bs-hero-bubble {
+        left: 0;
+        bottom: 4px;
+        padding: 12px 15px;
+    }
+
+    .bs-hero-bubble strong {
+        font-size: 12px;
+    }
+
+}

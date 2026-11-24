@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minha Conta | BairroServices</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .customer-dashboard {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .welcome-section {
+            background: #e5efe8;
+            padding: 35px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .welcome-section h1 {
+            color: #173f32;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .dashboard-card h2 {
+            color: #173f32;
+            margin-bottom: 12px;
+        }
+
+        .dashboard-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .dashboard-button {
+            display: block;
+            background: #26734d;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 13px;
+            border-radius: 6px;
+        }
+
+        .logout-button {
+            background: #a83232;
+            margin-top: 30px;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>BairroServices</h2>
+    <a href="index.html">Inicial</a>
+</header>
+
+<main class="customer-dashboard">
+
+    <section class="welcome-section">
+        <h1>Bem-vindo(a), <span id="customerName">Cliente</span>!</h1>
+        <p>Encontre profissionais de confiança perto de você.</p>
+    </section>
+
+    <section class="dashboard-actions">
+
+        <div class="dashboard-card">
+            <h2>Encontrar profissionais</h2>
+            <p>Descubra eletricistas, encanadores, carpinteiros e outros profissionais.</p>
+            <a href="index.html#services" class="dashboard-button">
+                Encontrar serviços
+            </a>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Minhas avaliações</h2>
+            <p>Acompanhe as avaliações que você deixou para os profissionais.</p>
+            <a href="my-reviews.html" class="dashboard-button">
+                Minhas avaliações
+            </a>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Minha conta</h2>
+            <p>Confira seus dados de cadastro.</p>
+            <p id="customerEmail"></p>
+            <p id="customerNeighborhood"></p>
+        </div>
+
+    </section>
+
+    <button class="logout-button" onclick="logout()">
+        Sair da conta
+    </button>
+
+</main>
+
+<script src="customer-dashboard.js"></script>
+
+</body>
+</html>

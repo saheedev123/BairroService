@@ -150,6 +150,142 @@
                 padding: 18px 5%;
             }
         }
+
+/* BUSINESS BRANDING */
+
+.business-branding-card {
+    margin-bottom: 25px;
+}
+
+.business-branding-card > p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.branding-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.branding-item {
+    min-width: 0;
+}
+
+.branding-item small {
+    display: block;
+    color: #777;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.logo-preview,
+.cover-preview {
+    width: 100%;
+    background: #e5efe8;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #567363;
+    text-align: center;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.logo-preview {
+    height: 175px;
+}
+
+.logo-preview img {
+    max-width: 100%;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.cover-preview {
+    height: 175px;
+}
+
+.cover-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.branding-message {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+@media (max-width: 750px) {
+    .branding-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* PRODUCT EDITING */
+
+.edit-product-button {
+    background: #e5efe8;
+    color: #173f32;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.edit-product-button:hover {
+    background: #d2e5d8;
+}
+
+.product-edit-form {
+    background: #f4f8f5;
+    border: 1px solid #dce8df;
+    padding: 18px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.product-edit-form h3 {
+    color: #173f32;
+    margin-bottom: 15px;
+}
+
+.product-edit-form label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: bold;
+}
+
+.product-edit-form input,
+.product-edit-form select,
+.product-edit-form textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.save-product-button,
+.cancel-product-button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.cancel-product-button {
+    background: #777;
+}
+
+.product-edit-message {
+    color: #b83232;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+
     </style>
 </head>
 
@@ -166,6 +302,96 @@
             <h1>Painel do Pequeno Empresário</h1>
             <p>Gerencie seu negócio e mostre seus produtos aos seus vizinhos.</p>
         </section>
+
+<!-- BUSINESS BRANDING SECTION -->
+
+<section class="dashboard-card business-branding-card">
+
+    <h2>Identidade do seu negócio</h2>
+
+    <p>
+        Personalize sua página pública com o logo e uma foto
+        de destaque do seu negócio.
+    </p>
+
+    <div class="branding-grid">
+
+        <!-- BUSINESS LOGO -->
+        <div class="branding-item">
+
+            <label>Logo do negócio</label>
+
+            <div class="logo-preview">
+                <div id="businessLogoPlaceholder">
+                    Seu logo aparecerá aqui
+                </div>
+
+                <img
+                    id="businessLogoPreview"
+                    alt="Logo do negócio"
+                    hidden
+                >
+            </div>
+
+            <input
+                type="file"
+                id="businessLogo"
+                accept="image/jpeg,image/png,image/webp"
+            >
+
+            <small>
+                JPG, PNG ou WEBP. Máximo de 5 MB.
+            </small>
+
+        </div>
+
+
+        <!-- BUSINESS COVER -->
+        <div class="branding-item">
+
+            <label>Foto de capa</label>
+
+            <div class="cover-preview">
+                <div id="businessCoverPlaceholder">
+                    Sua foto de capa aparecerá aqui
+                </div>
+
+                <img
+                    id="businessCoverPreview"
+                    alt="Foto de capa do negócio"
+                    hidden
+                >
+            </div>
+
+            <input
+                type="file"
+                id="businessCover"
+                accept="image/jpeg,image/png,image/webp"
+            >
+
+            <small>
+                JPG, PNG ou WEBP. Máximo de 5 MB.
+            </small>
+
+        </div>
+
+    </div>
+
+    <button
+        type="button"
+        id="saveBusinessBrandingButton"
+    >
+        Salvar identidade do negócio
+    </button>
+
+    <p
+        id="businessBrandingMessage"
+        role="status"
+        class="branding-message"
+    ></p>
+
+</section>
+
 
         <div class="dashboard-content">
 
@@ -232,139 +458,775 @@
         </div>
 
     </main>
+<script>
 
-    <script>
 
-        const productForm = document.getElementById("productForm");
-        const productList = document.getElementById("productList");
+const BACKEND_URL =
+    `${window.location.protocol}//${window.location.hostname}:3000`;
 
-        let products = JSON.parse(
-            localStorage.getItem("bairroProducts") || "[]"
+const token = sessionStorage.getItem("bairroToken");
+const savedUser = sessionStorage.getItem("bairroUser");
+
+const productForm = document.getElementById("productForm");
+const productList = document.getElementById("productList");
+
+
+// Check business account login
+let businessUser = null;
+
+try {
+    businessUser = savedUser ? JSON.parse(savedUser) : null;
+} catch (error) {
+    businessUser = null;
+}
+
+if (
+    !token ||
+    !businessUser ||
+    businessUser.accountType !== "business"
+) {
+    window.location.href = "login.html";
+
+} else {
+
+    // Load the business owner's saved products
+    loadProducts();
+
+// BUSINESS BRANDING MANAGEMENT
+
+const logoInput = document.getElementById("businessLogo");
+const coverInput = document.getElementById("businessCover");
+
+const logoPreview = document.getElementById("businessLogoPreview");
+const coverPreview = document.getElementById("businessCoverPreview");
+
+const logoPlaceholder =
+    document.getElementById("businessLogoPlaceholder");
+
+const coverPlaceholder =
+    document.getElementById("businessCoverPlaceholder");
+
+const saveBrandingButton =
+    document.getElementById("saveBusinessBrandingButton");
+
+const brandingMessage =
+    document.getElementById("businessBrandingMessage");
+
+
+// Display a saved image or hide its placeholder
+function displayBrandingImage(image, placeholder, imageUrl) {
+
+    if (imageUrl) {
+        image.src = `${BACKEND_URL}${imageUrl}`;
+        image.hidden = false;
+        placeholder.hidden = true;
+    } else {
+        image.removeAttribute("src");
+        image.hidden = true;
+        placeholder.hidden = false;
+    }
+}
+
+
+// Load the saved business logo and cover
+async function loadBusinessBranding() {
+
+    try {
+        const response = await fetch(
+            `${BACKEND_URL}/api/me`,
+            {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
         );
 
-        function displayProducts() {
+        const data = await response.json();
 
-            productList.innerHTML = "";
-
-            if (products.length === 0) {
-                productList.innerHTML =
-                    '<p class="empty-message">Você ainda não adicionou nenhum produto.</p>';
-                return;
-            }
-
-            products.forEach((product, index) => {
-
-                productList.innerHTML += `
-                    <div class="product-card">
-
-                        <img src="${product.image}" alt="${product.name}">
-
-                        <div class="product-info">
-
-                            <h3>${product.name}</h3>
-
-                            <p>${product.category}</p>
-
-                            <p class="price">
-                                ${Number(product.price).toLocaleString("pt-BR", {
-                                    style: "currency",
-                                    currency: "BRL"
-                                })}
-                            </p>
-
-                            <p>${product.description || ""}</p>
-
-                            <button class="delete-button"
-                                onclick="deleteProduct(${index})">
-                                Excluir produto
-                            </button>
-
-                        </div>
-
-                    </div>
-                `;
-            });
+        if (response.status === 401 || response.status === 403) {
+            sessionStorage.removeItem("bairroToken");
+            sessionStorage.removeItem("bairroUser");
+            window.location.href = "login.html";
+            return;
         }
 
-        productForm.addEventListener("submit", function(event) {
+        if (!response.ok) {
+            throw new Error(
+                data.message || "Não foi possível carregar sua identidade visual."
+            );
+        }
 
-            event.preventDefault();
+        const business = data.user;
 
-            const name = document.getElementById("productName").value;
-            const category = document.getElementById("productCategory").value;
-            const price = document.getElementById("productPrice").value;
-            const description = document.getElementById("productDescription").value;
-            const imageFile = document.getElementById("productImage").files[0];
+        displayBrandingImage(
+            logoPreview,
+            logoPlaceholder,
+            business.businessLogoUrl
+        );
 
-            if (!imageFile) {
-                alert("Por favor, escolha uma foto.");
-                return;
+        displayBrandingImage(
+            coverPreview,
+            coverPlaceholder,
+            business.businessCoverUrl
+        );
+
+    } catch (error) {
+        console.error("Load branding error:", error);
+        brandingMessage.textContent = error.message;
+    }
+}
+
+
+// Preview a selected image before uploading
+function previewBrandingImage(input, image, placeholder) {
+
+    input.addEventListener("change", function () {
+
+        const file = this.files[0];
+
+        if (!file) return;
+
+        const allowedTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+        ];
+
+        if (!allowedTypes.includes(file.type)) {
+            alert("Escolha uma imagem JPG, PNG ou WEBP.");
+            this.value = "";
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            alert("A imagem deve ter no máximo 5 MB.");
+            this.value = "";
+            return;
+        }
+
+        image.src = URL.createObjectURL(file);
+        image.hidden = false;
+        placeholder.hidden = true;
+    });
+}
+
+
+previewBrandingImage(
+    logoInput,
+    logoPreview,
+    logoPlaceholder
+);
+
+previewBrandingImage(
+    coverInput,
+    coverPreview,
+    coverPlaceholder
+);
+
+
+// Save business logo and cover to the backend
+saveBrandingButton.addEventListener("click", async function () {
+
+    const logoFile = logoInput.files[0];
+    const coverFile = coverInput.files[0];
+
+    if (!logoFile && !coverFile) {
+        brandingMessage.textContent =
+            "Selecione um logo ou uma foto de capa primeiro.";
+        return;
+    }
+
+    const formData = new FormData();
+
+    if (logoFile) {
+        formData.append("businessLogo", logoFile);
+    }
+
+    if (coverFile) {
+        formData.append("businessCover", coverFile);
+    }
+
+    saveBrandingButton.disabled = true;
+    saveBrandingButton.textContent = "Salvando...";
+
+    brandingMessage.textContent = "Enviando suas imagens...";
+
+    try {
+
+        const response = await fetch(
+            `${BACKEND_URL}/api/business/profile/branding`,
+            {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                },
+                body: formData
             }
+        );
 
-            if (!imageFile.type.startsWith("image/")) {
-                alert("Escolha um arquivo de imagem válido.");
-                return;
-            }
+        const data = await response.json();
 
-            if (imageFile.size > 1024 * 1024) {
-                alert("Escolha uma imagem com menos de 1 MB para este teste.");
-                return;
-            }
+        if (!response.ok) {
+            throw new Error(
+                data.message || "Não foi possível salvar suas imagens."
+            );
+        }
 
-            const reader = new FileReader();
+        // Display the permanently saved images
+        displayBrandingImage(
+            logoPreview,
+            logoPlaceholder,
+            data.businessLogoUrl
+        );
 
-            reader.onload = function() {
+        displayBrandingImage(
+            coverPreview,
+            coverPlaceholder,
+            data.businessCoverUrl
+        );
 
-                const newProduct = {
-                    name: name,
-                    category: category,
-                    price: price,
-                    description: description,
-                    image: reader.result
-                };
+        // Update the cached user information
+        businessUser.businessLogoUrl = data.businessLogoUrl;
+        businessUser.businessCoverUrl = data.businessCoverUrl;
 
-                products.push(newProduct);
+        sessionStorage.setItem(
+            "bairroUser",
+            JSON.stringify(businessUser)
+        );
 
-                try {
-                    localStorage.setItem(
-                        "bairroProducts",
-                        JSON.stringify(products)
-                    );
-                } catch (error) {
-                    products.pop();
-                    alert("Não foi possível salvar. Tente uma imagem menor.");
-                    return;
+        logoInput.value = "";
+        coverInput.value = "";
+
+        brandingMessage.textContent =
+            "Identidade do negócio salva com sucesso!";
+
+        brandingMessage.style.color = "#26734d";
+
+    } catch (error) {
+
+        console.error("Save branding error:", error);
+
+        brandingMessage.textContent = error.message;
+        brandingMessage.style.color = "#b83232";
+
+    } finally {
+
+        saveBrandingButton.disabled = false;
+        saveBrandingButton.textContent =
+            "Salvar identidade do negócio";
+
+    }
+});
+
+
+// Load existing branding when the dashboard opens
+loadBusinessBranding();
+
+
+
+    // Retrieve products from the backend
+    async function loadProducts() {
+
+        productList.innerHTML = `
+            <p class="empty-message">Carregando seus produtos...</p>
+        `;
+
+        try {
+            const response = await fetch(
+                `${BACKEND_URL}/api/business/my-products`,
+                {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
                 }
+            );
 
-                productForm.reset();
-                displayProducts();
+            const data = await response.json();
 
-                alert("Produto adicionado com sucesso!");
+            if (response.status === 401) {
+                sessionStorage.removeItem("bairroToken");
+                sessionStorage.removeItem("bairroUser");
+                window.location.href = "login.html";
+                return;
+            }
 
+            if (!response.ok) {
+                throw new Error(
+                    data.message || "Não foi possível carregar seus produtos."
+                );
+            }
+
+            displayProducts(data.products || []);
+
+        } catch (error) {
+            console.error("Load products error:", error);
+
+            productList.innerHTML = `
+                <p class="empty-message">
+                    Não foi possível carregar seus produtos.
+                    Verifique se o backend está funcionando.
+                </p>
+            `;
+        }
+    }
+
+
+    // Display products safely
+    function displayProducts(products) {
+
+        productList.innerHTML = "";
+
+        if (products.length === 0) {
+            productList.innerHTML = `
+                <p class="empty-message">
+                    Você ainda não adicionou nenhum produto.
+                </p>
+            `;
+            return;
+        }
+
+        products.forEach(product => {
+
+            const card = document.createElement("div");
+            card.className = "product-card";
+
+            // Product image
+            const image = document.createElement("img");
+
+            image.src = product.imageUrl
+                ? `${BACKEND_URL}${product.imageUrl}`
+                : "";
+
+            image.alt = product.name || "Produto";
+
+            image.onerror = function () {
+                this.style.display = "none";
             };
 
-            reader.readAsDataURL(imageFile);
+            // Product information
+            const info = document.createElement("div");
+            info.className = "product-info";
 
+            const name = document.createElement("h3");
+            name.textContent = product.name || "Produto";
+
+            const category = document.createElement("p");
+            category.textContent = product.category || "";
+
+            const price = document.createElement("p");
+            price.className = "price";
+
+            price.textContent = Number(product.price).toLocaleString(
+                "pt-BR",
+                {
+                    style: "currency",
+                    currency: "BRL"
+                }
+            );
+
+            const description = document.createElement("p");
+            description.textContent = product.description || "";
+
+
+// Edit product button
+const editButton = document.createElement("button");
+
+editButton.type = "button";
+editButton.className = "edit-product-button";
+editButton.textContent = "Editar produto";
+
+editButton.addEventListener("click", () => {
+    showProductEditForm(card, product);
+});
+
+            // Delete product button
+            const deleteButton = document.createElement("button");
+
+            deleteButton.type = "button";
+            deleteButton.className = "delete-button";
+            deleteButton.textContent = "Excluir produto";
+
+            deleteButton.addEventListener("click", () => {
+                deleteProduct(product.id, deleteButton);
+            });
+
+          info.append(
+    name,
+    category,
+    price,
+    description,
+    editButton,
+    deleteButton
+
+            );
+
+            card.append(image, info);
+
+            productList.appendChild(card);
         });
+    }
 
-        function deleteProduct(index) {
 
-            if (confirm("Tem certeza que deseja excluir este produto?")) {
+    // Add a new product permanently
+    productForm.addEventListener("submit", async function(event) {
 
-                products.splice(index, 1);
+        event.preventDefault();
 
-                localStorage.setItem(
-                    "bairroProducts",
-                    JSON.stringify(products)
+        const name = document
+            .getElementById("productName")
+            .value.trim();
+
+        const category = document
+            .getElementById("productCategory")
+            .value;
+
+        const price = document
+            .getElementById("productPrice")
+            .value;
+
+        const description = document
+            .getElementById("productDescription")
+            .value.trim();
+
+        const imageFile = document
+            .getElementById("productImage")
+            .files[0];
+
+        if (!imageFile) {
+            alert("Por favor, escolha uma foto.");
+            return;
+        }
+
+        const allowedTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+        ];
+
+        if (!allowedTypes.includes(imageFile.type)) {
+            alert("Escolha uma imagem JPG, PNG ou WEBP.");
+            return;
+        }
+
+        if (imageFile.size > 5 * 1024 * 1024) {
+            alert("A imagem deve ter no máximo 5 MB.");
+            return;
+        }
+
+        const formData = new FormData();
+
+        formData.append("name", name);
+        formData.append("category", category);
+        formData.append("price", price);
+        formData.append("description", description);
+        formData.append("productImage", imageFile);
+
+        const submitButton = productForm.querySelector(
+            'button[type="submit"]'
+        );
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Salvando produto...";
+
+        try {
+
+            const response = await fetch(
+                `${BACKEND_URL}/api/business/products`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: formData
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    data.message || "Não foi possível adicionar o produto."
                 );
+            }
 
-                displayProducts();
+            productForm.reset();
+
+            alert("Produto adicionado e salvo com sucesso!");
+
+            await loadProducts();
+
+        } catch (error) {
+
+            console.error("Add product error:", error);
+
+            alert(error.message);
+
+        } finally {
+
+            submitButton.disabled = false;
+            submitButton.textContent = "Adicionar Produto";
+
+        }
+    });
+
+
+// Show the product editing form
+function showProductEditForm(card, product) {
+
+    if (card.querySelector(".product-edit-form")) {
+        return;
+    }
+
+    const form = document.createElement("form");
+    form.className = "product-edit-form";
+
+    const heading = document.createElement("h3");
+    heading.textContent = "Editar produto";
+
+    // Product name
+    const nameLabel = document.createElement("label");
+    nameLabel.textContent = "Nome do produto";
+
+    const nameInput = document.createElement("input");
+    nameInput.type = "text";
+    nameInput.value = product.name || "";
+    nameInput.required = true;
+
+    // Category
+    const categoryLabel = document.createElement("label");
+    categoryLabel.textContent = "Categoria";
+
+    const categoryInput = document.createElement("select");
+    categoryInput.required = true;
+
+    const categories = [
+        "Comidas e lanches",
+        "Bolos e padarias",
+        "Roupas e moda",
+        "Mercados e mercearias",
+        "Joias e acessórios",
+        "Beleza e cosméticos",
+        "Eletrônicos",
+        "Outros"
+    ];
+
+    if (product.category && !categories.includes(product.category)) {
+        categories.push(product.category);
+    }
+
+    categories.forEach(category => {
+        const option = document.createElement("option");
+        option.value = category;
+        option.textContent = category;
+
+        if (category === product.category) {
+            option.selected = true;
+        }
+
+        categoryInput.appendChild(option);
+    });
+
+    // Price
+    const priceLabel = document.createElement("label");
+    priceLabel.textContent = "Preço (R$)";
+
+    const priceInput = document.createElement("input");
+    priceInput.type = "number";
+    priceInput.min = "0.01";
+    priceInput.step = "0.01";
+    priceInput.value = product.price;
+    priceInput.required = true;
+
+    // Description
+    const descriptionLabel = document.createElement("label");
+    descriptionLabel.textContent = "Descrição";
+
+    const descriptionInput = document.createElement("textarea");
+    descriptionInput.rows = 3;
+    descriptionInput.value = product.description || "";
+
+    // Optional new image
+    const imageLabel = document.createElement("label");
+    imageLabel.textContent = "Trocar foto do produto (opcional)";
+
+    const imageInput = document.createElement("input");
+    imageInput.type = "file";
+    imageInput.accept = "image/jpeg,image/png,image/webp";
+
+    const message = document.createElement("p");
+    message.className = "product-edit-message";
+    message.setAttribute("role", "status");
+
+    const saveButton = document.createElement("button");
+    saveButton.type = "submit";
+    saveButton.className = "save-product-button";
+    saveButton.textContent = "Salvar alterações";
+
+    const cancelButton = document.createElement("button");
+    cancelButton.type = "button";
+    cancelButton.className = "cancel-product-button";
+    cancelButton.textContent = "Cancelar";
+
+    cancelButton.addEventListener("click", () => {
+        form.remove();
+    });
+
+    form.append(
+        heading,
+        nameLabel,
+        nameInput,
+        categoryLabel,
+        categoryInput,
+        priceLabel,
+        priceInput,
+        descriptionLabel,
+        descriptionInput,
+        imageLabel,
+        imageInput,
+        message,
+        saveButton,
+        cancelButton
+    );
+
+    card.appendChild(form);
+
+    // Submit product changes
+    form.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const newName = nameInput.value.trim();
+        const newCategory = categoryInput.value;
+        const newPrice = Number(priceInput.value);
+        const newDescription = descriptionInput.value.trim();
+        const newImage = imageInput.files[0];
+
+        if (!newName || !newCategory || !Number.isFinite(newPrice) || newPrice <= 0) {
+            message.textContent = "Verifique os dados do produto.";
+            return;
+        }
+
+        if (newImage) {
+
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/webp"
+            ];
+
+            if (!allowedTypes.includes(newImage.type)) {
+                message.textContent =
+                    "Escolha uma imagem JPG, PNG ou WEBP.";
+                return;
+            }
+
+            if (newImage.size > 5 * 1024 * 1024) {
+                message.textContent =
+                    "A imagem deve ter no máximo 5 MB.";
+                return;
             }
         }
 
-        displayProducts();
+        const formData = new FormData();
 
-    </script>
+        formData.append("name", newName);
+        formData.append("category", newCategory);
+        formData.append("price", String(newPrice));
+        formData.append("description", newDescription);
 
+        if (newImage) {
+            formData.append("productImage", newImage);
+        }
+
+        saveButton.disabled = true;
+        saveButton.textContent = "Salvando...";
+
+        try {
+
+            const response = await fetch(
+                `${BACKEND_URL}/api/business/products/${encodeURIComponent(product.id)}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: formData
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    data.message || "Não foi possível atualizar o produto."
+                );
+            }
+
+            alert("Produto atualizado com sucesso!");
+
+            await loadProducts();
+
+        } catch (error) {
+
+            console.error("Edit product error:", error);
+
+            message.textContent = error.message;
+
+            saveButton.disabled = false;
+            saveButton.textContent = "Salvar alterações";
+        }
+    });
+}
+
+    // Delete a product permanently
+    async function deleteProduct(productId, button) {
+
+        const confirmed = confirm(
+            "Tem certeza de que deseja excluir este produto?"
+        );
+
+        if (!confirmed) return;
+
+        button.disabled = true;
+        button.textContent = "Excluindo...";
+
+        try {
+
+            const response = await fetch(
+                `${BACKEND_URL}/api/business/products/${encodeURIComponent(productId)}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    data.message || "Não foi possível excluir o produto."
+                );
+            }
+
+            alert("Produto excluído com sucesso!");
+
+            await loadProducts();
+
+        } catch (error) {
+
+            console.error("Delete product error:", error);
+
+            alert(error.message);
+
+            button.disabled = false;
+            button.textContent = "Excluir produto";
+        }
+    }
+}
+
+
+</script>
 </body>
 </html>

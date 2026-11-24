@@ -101,23 +101,26 @@ sessionStorage.setItem(
     JSON.stringify(dashboardUser)
 );
 
-alert("Registration successful! Welcome to BairroServices.");
 
 
             // Redirect users to their dashboards
-            if (userData.accountType === "professional") {
+          // Redirect users according to their account type
 
-                window.location.href = "./professional-dashboard.html";
+if (userData.accountType === "customer") {
 
-            } else if (userData.accountType === "business") {
+    alert("Sua conta de cliente foi criada! Faça login para continuar.");
 
-                window.location.href = "./smallbusiness-dashboard.html";
+    window.location.href = "./login.html";
 
-            } else {
+} else if (userData.accountType === "professional") {
 
-                alert("Account type not recognized!");
+    window.location.href = "./professional-dashboard.html";
 
-            }
+} else if (userData.accountType === "business") {
+
+    window.location.href = "./smallbusiness-dashboard.html";
+
+}
 
         } catch (error) {
 

@@ -2,7 +2,7 @@
 const container = document.getElementById("electricistasContainer");
 
 let electricians = [];
-const BACKEND_URL = `http://${window.location.hostname}:3000`;
+const BACKEND_URL = `${window.location.protocol}//${window.location.hostname}:3000`;
 const DEFAULT_PHOTO = "images/default-profile.png";
 
 // Load registered electricians
@@ -77,16 +77,35 @@ function displayElectricians(list) {
         profession.textContent = "Eletricista";
 
         // Reviews placeholder until real reviews are implemented
+     
+        // Display genuine customer ratings
+       
+        // Display genuine customer ratings
         const review = document.createElement("div");
         review.className = "review-summary";
 
         const stars = document.createElement("span");
         stars.className = "review-stars";
-        stars.textContent = "☆☆☆☆☆";
+
+        const totalReviews = Number(person.reviewCount) || 0;
+        const averageRating = Number(person.averageRating) || 0;
+
+        const filledStars = totalReviews > 0
+            ? Math.round(averageRating)
+            : 0;
+
+        stars.textContent =
+            "★".repeat(filledStars) +
+            "☆".repeat(5 - filledStars);
 
         const reviewText = document.createElement("span");
         reviewText.className = "review-text";
-        reviewText.textContent = "Ainda sem avaliações";
+
+        reviewText.textContent = totalReviews > 0
+            ? `${averageRating.toFixed(1)} (${totalReviews} ${
+                totalReviews === 1 ? "avaliação" : "avaliações"
+              })`
+            : "Ainda sem avaliações";
 
         review.append(stars, reviewText);
 

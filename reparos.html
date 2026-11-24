@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reparos Domésticos | BairroServices</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h2>BairroServices</h2>
+    <a href="index.html">Inicial</a>
+</header>
+
+<section class="profession-hero">
+
+    <h1>Encontre profissionais de reparos domésticos</h1>
+
+    <p>
+        Encontre especialistas em manutenção,
+        instalações e reparos para sua casa.
+    </p>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Pesquisar por nome ou bairro..."
+    >
+
+    <button onclick="searchProfissionaisReparos()">
+        Pesquisar
+    </button>
+
+</section>
+
+<section class="profession-list">
+
+    <h2>Profissionais disponíveis</h2>
+
+    <div id="reparosContainer" class="professional-grid">
+        <p>Carregando profissionais...</p>
+    </div>
+
+</section>
+
+<script src="reparos.js"></script>
+
+</body>
+</html>

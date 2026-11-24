@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profissionais de Limpeza | BairroServices</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h2>BairroServices</h2>
+    <a href="index.html">Inicial</a>
+</header>
+
+<section class="profession-hero">
+
+    <h1>Encontre profissionais de limpeza perto de você</h1>
+
+    <p>
+        Descubra profissionais de limpeza para sua casa
+        ou empresa na sua região.
+    </p>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Pesquisar por nome ou bairro..."
+    >
+
+    <button onclick="searchProfissionaisLimpeza()">
+        Pesquisar
+    </button>
+
+</section>
+
+<section class="profession-list">
+
+    <h2>Profissionais de limpeza disponíveis</h2>
+
+    <div id="limpezaContainer" class="professional-grid">
+        <p>Carregando profissionais de limpeza...</p>
+    </div>
+
+</section>
+
+<script src="limpeza.js"></script>
+
+</body>
+</html>

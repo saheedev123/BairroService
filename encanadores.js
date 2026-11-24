@@ -3,13 +3,19 @@ const container = document.getElementById("encanadoresContainer");
 
 let encanadores = [];
 
+const BACKEND_URL =
+    `${window.location.protocol}//${window.location.hostname}:3000`;
+
+const DEFAULT_PHOTO = "images/default-profile.png";
+
+
 // Load registered plumbers from the backend
 async function loadEncanadores() {
     try {
         container.innerHTML = "<p>Carregando encanadores...</p>";
 
         const response = await fetch(
-            "http://localhost:3000/api/professionals"
+            `${BACKEND_URL}/api/professionals`
         );
 
         if (!response.ok) {
@@ -19,13 +25,13 @@ async function loadEncanadores() {
         const data = await response.json();
 
         encanadores = (data.professionals || []).filter(person =>
-            person.profession.toLowerCase() === "plumber"
+            (person.profession || "").toLowerCase() === "plumber"
         );
 
         displayEncanadores(encanadores);
 
     } catch (error) {
-        console.error(error);
+        console.error("Erro:", error);
 
         container.innerHTML = `
             <p>Não foi possível carregar os encanadores.
@@ -50,36 +56,74 @@ function displayEncanadores(list) {
         const card = document.createElement("div");
         card.className = "professional-card";
 
+        // Professional profile picture
+        const photo = document.createElement("img");
+
+        photo.className = "professional-photo";
+
+        photo.src = person.photoUrl
+            ? `${BACKEND_URL}${person.photoUrl}`
+            : DEFAULT_PHOTO;
+
+        photo.alt = `Foto de ${person.fullname || "Profissional"}`;
+
+        photo.onerror = function () {
+            this.onerror = null;
+            this.src = DEFAULT_PHOTO;
+        };
+
+        // Professional information
+        const info = document.createElement("div");
+        info.className = "professional-info";
+
         const name = document.createElement("h3");
-        name.textContent = person.fullname;
+        name.textContent = person.fullname || "Profissional";
 
-        const location = document.createElement("p");
-        location.textContent = "📍 " + person.neighborhood;
+        const profession = document.createElement("p");
+        profession.className = "profession-label";
+        profession.textContent = "Encanador";
 
-        const experience = document.createElement("p");
-        experience.textContent = "Experiência: " + person.experience;
+        // Genuine customer ratings
+        const review = document.createElement("div");
+        review.className = "review-summary";
 
-        const description = document.createElement("p");
-        description.textContent = person.serviceDescription;
+        const stars = document.createElement("span");
+        stars.className = "review-stars";
 
-        card.append(name, location, experience, description);
+        const totalReviews = Number(person.reviewCount) || 0;
+        const averageRating = Number(person.averageRating) || 0;
 
-        if (person.whatsappLink) {
-            const whatsapp = document.createElement("a");
+        const filledStars = totalReviews > 0
+            ? Math.max(0, Math.min(5, Math.round(averageRating)))
+            : 0;
 
-            whatsapp.className = "whatsapp-button";
-            whatsapp.href = person.whatsappLink +
-                "?text=" +
-                encodeURIComponent(
-                    `Olá ${person.fullname}, encontrei seu perfil no BairroServices e gostaria de saber mais sobre seus serviços.`
-                );
+        stars.textContent =
+            "★".repeat(filledStars) +
+            "☆".repeat(5 - filledStars);
 
-            whatsapp.target = "_blank";
-            whatsapp.rel = "noopener noreferrer";
-            whatsapp.textContent = "Contactar pelo WhatsApp";
+        const reviewText = document.createElement("span");
+        reviewText.className = "review-text";
 
-            card.appendChild(whatsapp);
-        }
+        reviewText.textContent = totalReviews > 0
+            ? `${averageRating.toFixed(1)} (${totalReviews} ${
+                totalReviews === 1 ? "avaliação" : "avaliações"
+              })`
+            : "Ainda sem avaliações";
+
+        review.append(stars, reviewText);
+
+        // View full professional profile
+        const viewProfile = document.createElement("a");
+
+        viewProfile.className = "view-profile-button";
+        viewProfile.textContent = "Ver perfil";
+
+        viewProfile.href =
+            `professional-profile.html?id=${encodeURIComponent(person.id)}`;
+
+        info.append(name, profession, review, viewProfile);
+
+        card.append(photo, info);
 
         container.appendChild(card);
     });
@@ -94,9 +138,9 @@ function searchEncanadores() {
         .toLowerCase();
 
     const results = encanadores.filter(person =>
-        person.fullname.toLowerCase().includes(search) ||
-        person.neighborhood.toLowerCase().includes(search) ||
-        person.serviceDescription.toLowerCase().includes(search)
+        (person.fullname || "").toLowerCase().includes(search) ||
+        (person.neighborhood || "").toLowerCase().includes(search) ||
+        (person.serviceDescription || "").toLowerCase().includes(search)
     );
 
     displayEncanadores(results);

@@ -23,8 +23,7 @@
     <a href="index.html" class="back-link">← Voltar ao início</a>
 
     <p id="profileStatus">Carregando perfil...</p>
-
-    <p id="profileError" hidden></p>
+    <p id="profileError" class="profile-error" hidden></p>
 
     <section id="publicProfile" class="public-profile" hidden>
 
@@ -43,9 +42,16 @@
 
             <p id="profileNeighborhood" class="profile-neighborhood"></p>
 
-            <div class="review-summary">
-                <span class="review-stars">☆☆☆☆☆</span>
-                <span class="review-text">Ainda sem avaliações</span>
+            <!-- Real rating summary -->
+            <div class="rating-overview">
+                <span id="averageRating" class="rating-number">—</span>
+
+                <div>
+                    <div id="averageStars" class="review-stars">☆☆☆☆☆</div>
+                    <p id="reviewCount" class="rating-count">
+                        Ainda sem avaliações
+                    </p>
+                </div>
             </div>
 
             <h2>Sobre o profissional</h2>
@@ -63,6 +69,99 @@
             >
                 Contactar pelo WhatsApp
             </a>
+
+            <!-- Customer review form -->
+            <section id="reviewFormSection" class="review-form-section" hidden>
+
+                <h2>Deixe sua avaliação</h2>
+
+                <p id="reviewFormHint">
+                    Como foi sua experiência com este profissional?
+                </p>
+
+                <form id="reviewForm">
+
+                    <label class="rating-label">
+                        Sua nota
+                    </label>
+
+                    <div class="rating-picker" aria-label="Escolha de uma a cinco estrelas">
+
+                        <button type="button" class="rating-choice" data-rating="1"
+                            aria-label="1 estrela" aria-pressed="false">☆</button>
+
+                        <button type="button" class="rating-choice" data-rating="2"
+                            aria-label="2 estrelas" aria-pressed="false">☆</button>
+
+                        <button type="button" class="rating-choice" data-rating="3"
+                            aria-label="3 estrelas" aria-pressed="false">☆</button>
+
+                        <button type="button" class="rating-choice" data-rating="4"
+                            aria-label="4 estrelas" aria-pressed="false">☆</button>
+
+                        <button type="button" class="rating-choice" data-rating="5"
+                            aria-label="5 estrelas" aria-pressed="false">☆</button>
+
+                    </div>
+
+                    <input type="hidden" id="selectedRating" value="">
+
+                    <label for="reviewComment">
+                        Conte como foi sua experiência
+                    </label>
+
+                    <textarea
+                        id="reviewComment"
+                        rows="5"
+                        minlength="10"
+                        maxlength="1000"
+                        placeholder="Escreva sua avaliação..."
+                        required
+                    ></textarea>
+
+                    <p class="review-help">
+                        Sua avaliação deve ter entre 10 e 1000 caracteres.
+                    </p>
+
+                    <button
+                        type="submit"
+                        id="submitReviewButton"
+                        class="submit-review-button"
+                    >
+                        Enviar avaliação
+                    </button>
+
+                    <p
+                        id="reviewFormMessage"
+                        class="review-form-message"
+                        role="status"
+                    ></p>
+
+                </form>
+
+            </section>
+
+            <!-- Message for visitors who are not logged in -->
+            <div id="loginReviewPrompt" class="review-access-message" hidden>
+                <p>Entre na sua conta de cliente para avaliar este profissional.</p>
+                <a href="login.html">Entrar na minha conta</a>
+            </div>
+
+            <!-- Message for non-customer accounts -->
+            <p id="customerOnlyMessage" class="review-access-message" hidden>
+                Somente contas de clientes podem enviar avaliações.
+            </p>
+
+            <!-- Public customer reviews -->
+            <section class="customer-reviews-section">
+
+                <h2>Avaliações dos clientes</h2>
+
+                <div id="publicReviewsList">
+                    <p>Carregando avaliações...</p>
+                </div>
+
+            </section>
 
         </div>
 

@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Negócio | BairroServices</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h2>BairroServices</h2>
+    <a href="pequenos-negocios.html">Voltar aos negócios</a>
+</header>
+
+<main class="public-business-page">
+
+    <a href="pequenos-negocios.html" class="business-back-link">
+        ← Voltar aos pequenos negócios
+    </a>
+
+    <p id="businessProfileStatus">Carregando negócio...</p>
+
+    <p id="businessProfileError" class="business-error" hidden></p>
+
+    <section id="businessProfileContent" hidden>
+
+        <div class="public-business-header">
+
+            <div id="businessCoverContainer" class="business-cover-container">
+
+                <img
+                    id="businessCover"
+                    class="business-cover"
+                    alt="Foto dos produtos do negócio"
+                    hidden
+                >
+
+                <div id="businessCoverPlaceholder"
+                    class="business-cover-placeholder">
+                    Bem-vindo ao nosso negócio
+                </div>
+
+            </div>
+
+            <div class="public-business-info">
+                <img
+    id="publicBusinessLogo"
+    class="public-business-logo"
+    alt="Logo do negócio"
+    hidden
+>
+
+                <p id="publicBusinessCategory" class="business-category"></p>
+
+                <h1 id="publicBusinessName"></h1>
+
+                <p id="publicBusinessNeighborhood"></p>
+
+                <p id="publicBusinessDescription"></p>
+
+                <p id="publicProductCount" class="business-product-count"></p>
+  
+
+                <a
+                    id="businessWhatsapp"
+                    class="business-whatsapp-button"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    hidden
+                >
+                    Contactar pelo WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+        <section class="public-products-section">
+
+            <h2>Nossos produtos</h2>
+
+            <p class="products-intro">
+                Conheça os produtos disponíveis neste negócio.
+            </p>
+
+            <div id="publicProductsContainer" class="public-products-grid">
+                <p>Carregando produtos...</p>
+            </div>
+
+        </section>
+
+<!-- PRODUCT ORDER ENQUIRY FORM -->
+
+<section id="orderEnquirySection" class="order-enquiry-section" hidden>
+
+    <h2>Solicitar produto</h2>
+
+    <p id="selectedProductInfo"></p>
+
+    <form id="orderEnquiryForm">
+
+        <label for="orderQuantity">Quantidade</label>
+
+        <input
+            type="number"
+            id="orderQuantity"
+            min="1"
+            max="99"
+            value="1"
+            required
+        >
+
+        <label for="orderMessage">Mensagem para o vendedor (opcional)</label>
+
+        <textarea
+            id="orderMessage"
+            rows="4"
+            maxlength="500"
+            placeholder="Ex: Gostaria de saber se este produto está disponível."
+        ></textarea>
+
+        <button type="submit" id="sendOrderButton">
+            Enviar solicitação
+        </button>
+
+        <button type="button" id="cancelOrderButton">
+            Cancelar
+        </button>
+
+        <p id="orderMessageStatus" role="status"></p>
+
+        <a
+            id="orderWhatsappLink"
+            class="business-whatsapp-button"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            hidden
+        >
+            Continuar pelo WhatsApp
+        </a>
+
+    </form>
+
+</section>
+
+    </section>
+
+</main>
+
+<script src="business-profile.js"></script>
+
+</body>
+</html>

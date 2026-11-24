@@ -1,51 +1,125 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <link rel="stylesheet" href="skill.css">
+    <title>BairroServices - Encontre Serviços e Negócios Locais</title>
 
-    <title>BairroServices</title>
-
+    <link rel="stylesheet" href="skill.css">
 </head>
-
-        <header>    
-
-    <img src="images/WhatsApp Image 2026-10-29 at 6.40.50 PM.jpeg" 
-          
-              id="sam">
-        </a>
-           
-
-            </header>
-
-
 
 <body>
 
-    <ul id="zuko">
-        <li><a href="login.html">Entrar</a></li> 
-            <li><a href="register.html">Cadastre-se aqui</a></a></li> 
+<!-- BAIRROSERVICES NEW HERO -->
+<div class="bs-hero-shell" id="top">
 
-          
-    </ul>
+    <!-- NAVIGATION -->
+    <nav class="bs-nav">
 
-    
-</a>
+        <a href="index.html" class="bs-brand">
+            <img
+                src="images/WhatsApp Image 2026-10-29 at 6.40.50 PM.jpeg"
+                alt="BairroServices Logo"
+            >
+            <span>BairroServices</span>
+        </a>
 
+        <div class="bs-nav-links">
+            <a href="#top">Início</a>
+            <a href="#about">Sobre nós</a>
+            <a href="#services">Serviços</a>
+            <a href="contacto.html">Contato</a>
+        </div>
 
-      <div class="header">
-              <h1>Encontre Perto. Contrate Local. Cresça Junto.</h1>
+    </nav>
 
-          <p>Quer ganhar mais com suas habilidades? Exponha seu trabalho. Promova seu 
-            negócio. Alcance mais clientes. Cadastre-se no BairroServices hoje mesmo e conecte-se a
-             pessoas que buscam seus serviços e produtos no próprio bairro.</p>
+    <!-- HERO CONTENT -->
+    <section class="bs-hero-layout">
 
+        <div class="bs-hero-copy">
 
-            de eletricistas, encanadores, carpinteiros a lojas locais e pequenos negócios, descubra os serviços que você precisa bem no seu bairro
-              
-            </div>     
+            <span class="bs-eyebrow">
+                SERVIÇOS E NEGÓCIOS DO SEU BAIRRO
+            </span>
+
+            <h1>
+                Encontre perto.
+                <span>Contrate local.</span>
+            </h1>
+
+            <h2>
+                Cresça junto com sua comunidade.
+            </h2>
+
+            <p class="bs-hero-description">
+                Precisa de um eletricista, encanador ou profissional
+                de limpeza? Quer descobrir produtos e lojas perto
+                de você? O BairroServices conecta clientes,
+                profissionais e pequenos empreendedores para
+                fortalecer os negócios locais.
+            </p>
+
+            <!-- MAIN ACTION BUTTONS -->
+            <div class="bs-hero-buttons">
+
+                <a href="login.html" class="bs-btn bs-btn-primary">
+                    Entrar
+                </a>
+
+                <a href="register.html" class="bs-btn bs-btn-outline">
+                    Cadastre-se
+                </a>
+
+                <a href="pequenos-negocios.html" class="bs-btn bs-btn-business">
+                    Pequenos Negócios
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE IMAGE COLLAGE -->
+        <div class="bs-hero-visual">
+
+            <div class="bs-hero-image-main">
+                <img
+                    src="images/image.jpeg"
+                    alt="Empreendedor de pequeno negócio"
+                >
+            </div>
+
+            <div class="bs-floating-image bs-floating-electrician">
+                <img
+                    src="images/let.jpg"
+                    alt="Profissional eletricista"
+                >
+                <span>Profissionais locais</span>
+            </div>
+
+            <div class="bs-floating-image bs-floating-plumber">
+                <img
+                    src="images/aqu.jfif"
+                    alt="Serviços de encanamento"
+                >
+                <span>Serviços para sua casa</span>
+            </div>
+
+            <div class="bs-hero-bubble">
+                <span>Seu bairro</span>
+                <strong>Seu espaço para crescer!</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- KEEP YOUR EXISTING SEARCH SECTION BELOW THIS LINE -->
+
 
 <section class="search-section">
     <div class="search-container">
@@ -103,8 +177,9 @@
                 <span>DESCUBRA NEGÓCIOS LOCAIS</span>
                 <h2>Encontre tudo no seu bairro!</h2>
                 <p>Descubra lojas, bolos, comidas, roupas e pequenos negócios perto de casa.</p>
-                <a href="businesses.html" class="slide-button">Explorar negócios</a>
-            </div>
+               <a href="pequenos-negocios.html" class="slide-button">
+    Explorar negócios
+</a>
         </div>
 
         <!-- SLIDE 3 -->
@@ -227,66 +302,94 @@ Empoderando negócios locais.
         </p>
     </div>
 
-    <div class="services-grid">
+  
+<div class="services-grid">
 
-        <div class="service-card">
-            <img src="images/jarmoluk-electrician-2755683_1920.jpg"
-                 alt="Electrician">
-            <h3>Eletricistas</h3>       
-            <p>Instalações e reparos elétricos.</p>
-            <a href="services.html?category=electricians">
-            <a href="electricistas.html">  Encontre Profissionais →</a>
-              
-        </div>
+    <!-- ELECTRICIANS -->
+    <div class="service-card">
+        <img src="images/jarmoluk-electrician-2755683_1920.jpg"
+             alt="Eletricista">
 
-        <div class="service-card">
-            <img src="images/elect.jpeg"
-                 alt="Home maintenance professional">
-            <h3>Reparos em Casa</h3>
-            <p>Manutenção e reparos na sua casa.</p>
-            <a href="services.html?category=home-repairs">
-                Encontre Profissionais →
-            </a>
-        </div>
+        <h3>Eletricistas</h3>
 
-        <div class="service-card">
-            <img src="images/photo-1556740758-90de374c12ad.avif"
-                 alt="">
-            <h3>Donos de pequenos negócios</h3>
-            <p>Explore Negócios</p>
-            <a href="services.html?category=cakes-and-sweets">
-               Explore Negócios →
-            </a>
-        </div>
+        <p>Instalações e reparos elétricos.</p>
 
-        <div class="service-card">
-           <img src="images/aqu.jfif">
-            <h3>Encanadores</h3>
-            <p>Instalações e reparos de encanamento.</p>
-            <a href="services.html?category=plumbers">
-                 Encontre Profissionais →
-            </a>
-        </div>
-
-        <div class="service-card">
-          <img src="images/carp">  
-            <h3>Carpinteiros</h3>
-            <p>Móveis, trabalhos em madeira e projetos personalizados.</p>
-            <a href="services.html?category=carpenters">
-                Encontre Profissionais →
-            </a>
-        </div>
-
-        <div class="service-card">
-             <img src="images/premium_photo-1661662870418-a90775088d02.avif">
-            <h3>Serviços de Limpeza</h3>
-            <p>Encontre faxineiros locais para casa e escritório.</p>
-            <a href="services.html?category=cleaning">
-                 Encontre Profissionais→
-            </a>
-        </div>
-
+        <a href="electricistas.html">
+            Encontre Profissionais →
+        </a>
     </div>
+
+    <!-- HOME REPAIRS -->
+    <div class="service-card">
+        <img src="images/dash.jpg"
+             alt="Profissional de reparos domésticos">
+
+        <h3>Reparos em Casa</h3>
+
+        <p>Manutenção, instalações e reparos domésticos.</p>
+
+        <a href="reparos.html">
+            Encontre Profissionais →
+        </a>
+    </div>
+
+    <!-- SMALL BUSINESSES -->
+    <div class="service-card">
+        <img src="images/photo-1556740758-90de374c12ad.avif"
+             alt="Pequenos negócios locais">
+
+        <h3>Pequenos Negócios</h3>
+
+        <p>Descubra lojas, produtos e empreendedores da sua região.</p>
+
+        <a href="pequenos-negocios.html">
+            Explorar Negócios →
+        </a>
+    </div>
+
+    <!-- PLUMBERS -->
+    <div class="service-card">
+        <img src="images/aqu.jfif"
+             alt="Encanador">
+
+        <h3>Encanadores</h3>
+
+        <p>Instalações e reparos de encanamento.</p>
+
+        <a href="encanadores.html">
+            Encontre Profissionais →
+        </a>
+    </div>
+
+    <!-- CARPENTERS -->
+    <div class="service-card">
+        <img src="images/carp"
+             alt="Carpinteiro">
+
+        <h3>Carpinteiros</h3>
+
+        <p>Móveis, trabalhos em madeira e projetos personalizados.</p>
+
+        <a href="carpinteiros.html">
+            Encontre Profissionais →
+        </a>
+    </div>
+
+    <!-- CLEANING -->
+    <div class="service-card">
+        <img src="images/premium_photo-1661662870418-a90775088d02.avif"
+             alt="Serviços de limpeza">
+
+        <h3>Serviços de Limpeza</h3>
+
+        <p>Encontre profissionais de limpeza para casa e escritório.</p>
+
+        <a href="limpeza.html">
+            Encontre Profissionais →
+        </a>
+    </div>
+
+</div>
 
         <a href="electricistas.html">
     
@@ -297,7 +400,7 @@ Empoderando negócios locais.
 </section>
 
 <script src="slideshow.js"></script>
-</body>
+
 
 
    <footer class="footer">
@@ -326,6 +429,7 @@ Empoderando negócios locais.
       <a href="login.html">Entrar</a>
 
       <a href="contacto.html">Contato</a>
+      <a href="pequenos-negocios.html">Pequenos Negócios</a>
        
     </div>
 
@@ -345,5 +449,5 @@ Empoderando negócios locais.
 
  
 
-    
+    </body>
 </html>

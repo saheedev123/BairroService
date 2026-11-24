@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minhas Avaliações | BairroServices</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h2>BairroServices</h2>
+    <a href="customer-dashboard.html">Minha conta</a>
+</header>
+
+<main class="my-reviews-page">
+
+    <a href="customer-dashboard.html" class="reviews-back-link">
+        ← Voltar ao painel
+    </a>
+
+    <section class="my-reviews-heading">
+        <h1>Minhas Avaliações</h1>
+
+        <p>
+            Veja as avaliações que você compartilhou
+            com os profissionais do BairroServices.
+        </p>
+    </section>
+
+    <section class="reviews-summary">
+        <div>
+            <span id="totalReviews">0</span>
+            <p>Avaliações enviadas</p>
+        </div>
+    </section>
+
+    <p id="reviewsStatus">Carregando suas avaliações...</p>
+
+    <div id="reviewsError" class="my-reviews-error" hidden></div>
+
+    <section id="myReviewsList" class="my-reviews-list"></section>
+
+    <section id="emptyReviews" class="empty-reviews" hidden>
+
+        <h2>Você ainda não enviou avaliações</h2>
+
+        <p>
+            Depois de contratar um profissional, volte aqui
+            para compartilhar sua experiência.
+        </p>
+
+        <a href="index.html#services" class="browse-professionals-button">
+            Encontrar profissionais
+        </a>
+
+    </section>
+
+</main>
+
+<script src="my-reviews.js"></script>
+
+</body>
+</html>

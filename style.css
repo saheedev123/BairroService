@@ -323,3 +323,1055 @@ button {
         height: 300px !important;
     }
 }
+
+/* Professional rating summary */
+.rating-overview {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 0;
+    margin: 15px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.rating-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: #173f32;
+}
+
+.rating-stars,
+.review-stars {
+    color: #d4a72c;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.rating-count {
+    color: #777;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* Review form */
+.review-form-section {
+    background: #f5f7f5;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 35px;
+}
+
+.review-form-section h2 {
+    margin-top: 0;
+}
+
+.review-form-section form {
+    margin-top: 20px;
+}
+
+.rating-label,
+.review-form-section label[for="reviewComment"] {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #173f32;
+}
+
+.rating-picker {
+    display: flex;
+    gap: 5px;
+    margin: 10px 0 22px;
+}
+
+.rating-choice {
+    background: transparent !important;
+    color: #c9c9c9 !important;
+    border: none;
+    padding: 0 3px;
+    font-size: 36px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.rating-choice.selected,
+.rating-choice:hover {
+    color: #d4a72c !important;
+}
+
+.review-form-section textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    resize: vertical;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.review-form-section textarea:focus {
+    outline: 2px solid #26734d;
+    border-color: #26734d;
+}
+
+.review-help {
+    color: #777 !important;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.submit-review-button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 14px;
+}
+
+.submit-review-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.review-form-message {
+    margin-top: 14px;
+    font-size: 14px;
+}
+
+.review-form-message.success {
+    color: #26734d;
+}
+
+.review-form-message.error,
+.review-error {
+    color: #b42318;
+}
+
+/* Public customer reviews */
+.customer-reviews-section {
+    margin-top: 40px;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 25px;
+}
+
+.customer-reviews-section h2 {
+    margin-bottom: 20px;
+}
+
+.customer-review {
+    background: #f8f9f8;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.customer-review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.customer-review-header strong {
+    color: #173f32;
+}
+
+.review-date {
+    color: #888;
+    font-size: 12px;
+}
+
+.customer-review .review-stars {
+    margin-bottom: 10px;
+}
+
+.customer-review-comment {
+    color: #555;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.no-reviews {
+    background: #f8f9f8;
+    border-radius: 8px;
+    padding: 20px;
+    color: #777;
+}
+
+.review-access-message {
+    background: #e5efe8;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.review-access-message a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #26734d;
+    font-weight: bold;
+}
+
+.profile-error {
+    color: #b42318;
+}
+
+@media (max-width: 600px) {
+    .review-form-section {
+        padding: 18px;
+    }
+
+    .customer-review {
+        padding: 15px;
+    }
+
+    .customer-review-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .rating-choice {
+        font-size: 32px;
+    }
+}
+
+/* CUSTOMER MY REVIEWS PAGE */
+
+.my-reviews-page {
+    max-width: 950px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.reviews-back-link {
+    display: inline-block;
+    color: #26734d;
+    text-decoration: none;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.my-reviews-heading {
+    margin-bottom: 25px;
+}
+
+.my-reviews-heading h1 {
+    color: #173f32;
+    margin-bottom: 10px;
+}
+
+.my-reviews-heading p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.reviews-summary {
+    background: #e5efe8;
+    padding: 22px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.reviews-summary span {
+    font-size: 30px;
+    font-weight: bold;
+    color: #173f32;
+}
+
+.reviews-summary p {
+    color: #555;
+    margin-top: 5px;
+}
+
+.my-reviews-list {
+    display: grid;
+    gap: 20px;
+}
+
+.my-review-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+.my-review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.my-review-header h2 {
+    color: #173f32;
+    font-size: 19px;
+    margin-bottom: 7px;
+}
+
+.my-review-profession {
+    color: #26734d;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.my-review-neighborhood {
+    color: #777;
+    font-size: 13px;
+}
+
+.my-review-rating {
+    color: #d4a72c;
+    font-size: 23px;
+    letter-spacing: 2px;
+    margin: 20px 0 12px;
+}
+
+.my-review-rating-number {
+    color: #555;
+    font-size: 13px;
+    letter-spacing: normal;
+    margin-left: 8px;
+}
+
+.my-review-comment {
+    color: #555;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+    margin-bottom: 15px;
+}
+
+.my-review-date {
+    color: #888;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.my-review-button {
+    display: inline-block;
+    background: #26734d;
+    color: white;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.my-review-button:hover {
+    background: #173f32;
+}
+
+.empty-reviews {
+    background: white;
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+}
+
+.empty-reviews h2 {
+    color: #173f32;
+    margin-bottom: 12px;
+}
+
+.empty-reviews p {
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+.browse-professionals-button {
+    display: inline-block;
+    background: #26734d;
+    color: white;
+    padding: 13px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.my-reviews-error {
+    background: #fff0f0;
+    color: #a83232;
+    padding: 18px;
+    border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+
+    .my-reviews-page {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .my-review-card {
+        padding: 18px;
+    }
+
+    .my-review-header {
+        flex-direction: column;
+    }
+
+    .my-review-button {
+        display: block;
+        width: 100%;
+    }
+}
+
+/* Review management buttons */
+
+.my-review-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 5px 0 15px;
+}
+
+.edit-review-button,
+.delete-review-button {
+    padding: 11px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.edit-review-button {
+    background: #e5efe8;
+    color: #173f32;
+}
+
+.delete-review-button {
+    background: #fff0f0;
+    color: #a83232;
+}
+
+.edit-review-button:hover {
+    background: #d4e5d9;
+}
+
+.delete-review-button:hover {
+    background: #fbdada;
+}
+
+.delete-review-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Inline edit form */
+
+.my-review-edit-form {
+    background: #f5f7f5;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.my-review-edit-form h3 {
+    color: #173f32;
+    margin-bottom: 18px;
+}
+
+.my-review-edit-form label {
+    display: block;
+    color: #173f32;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.edit-rating-picker {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.edit-rating-picker button {
+    background: transparent;
+    color: #c9c9c9;
+    border: none;
+    padding: 0 3px;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.edit-rating-picker button.selected {
+    color: #d4a72c;
+}
+
+.my-review-edit-form textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    resize: vertical;
+    margin-bottom: 12px;
+}
+
+.edit-review-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.edit-review-save,
+.edit-review-cancel {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.edit-review-save {
+    background: #26734d;
+    color: white;
+}
+
+.edit-review-cancel {
+    background: #e5e5e5;
+    color: #333;
+}
+
+.edit-review-message {
+    color: #a83232;
+    margin-bottom: 12px;
+}
+
+@media (max-width: 600px) {
+    .my-review-actions {
+        flex-direction: column;
+    }
+
+    .my-review-actions button {
+        width: 100%;
+    }
+
+    .edit-review-actions button {
+        width: 100%;
+    }
+}
+
+/* SMALL BUSINESS DIRECTORY */
+
+.business-hero {
+    background: #e5efe8;
+    padding: 55px 7%;
+    text-align: center;
+}
+
+.business-hero h1 {
+    color: #173f32;
+    margin-bottom: 15px;
+}
+
+.business-hero > p {
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.business-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 950px;
+    margin: auto;
+}
+
+.business-search input {
+    flex: 2 1 260px;
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+.business-search select {
+    flex: 1 1 200px;
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    background: white;
+}
+
+.business-search button {
+    margin-top: 0;
+}
+
+.business-directory {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.business-directory-heading {
+    margin-bottom: 25px;
+}
+
+.business-directory-heading h2 {
+    color: #173f32;
+    margin-bottom: 8px;
+}
+
+.business-directory-heading p {
+    color: #777;
+    font-size: 14px;
+}
+
+.business-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+    justify-content: center;
+    gap: 25px;
+}
+
+.business-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+.business-card-image {
+    width: 100%;
+    height: 200px;
+    background: #e5efe8;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.business-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.business-image-placeholder {
+    color: #567363;
+    padding: 20px;
+    text-align: center;
+}
+
+.business-card-info {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.business-card-info h3 {
+    color: #173f32;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.business-category {
+    color: #26734d;
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.business-neighborhood {
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.business-description {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    overflow-wrap: anywhere;
+}
+
+.business-product-count {
+    color: #26734d;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.business-profile-button {
+    display: block;
+    width: 100%;
+    background: #26734d;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 13px;
+    border-radius: 7px;
+    margin-top: auto;
+}
+
+.business-profile-button:hover {
+    background: #173f32;
+}
+
+.business-empty {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    color: #777;
+    grid-column: 1 / -1;
+}
+
+.business-empty h3 {
+    color: #173f32;
+    margin-bottom: 10px;
+}
+
+/* PUBLIC BUSINESS PROFILE */
+
+.public-business-page {
+    max-width: 1100px;
+    margin: 35px auto;
+    padding: 20px;
+}
+
+.business-back-link {
+    display: inline-block;
+    color: #26734d;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.public-business-header {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+.business-cover-container {
+    width: 100%;
+    height: 300px;
+    background: #e5efe8;
+}
+
+.business-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.business-cover-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #567363;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.public-business-info {
+    padding: 30px;
+}
+
+.public-business-info h1 {
+    color: #173f32;
+    margin: 8px 0 12px;
+}
+
+.public-business-info > p {
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.business-whatsapp-button {
+    display: inline-block;
+    background: #26734d;
+    color: white;
+    text-decoration: none;
+    padding: 14px 22px;
+    border-radius: 7px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.business-whatsapp-button:hover,
+.product-contact-button:hover {
+    background: #173f32;
+}
+
+/* BUSINESS PRODUCTS */
+
+.public-products-section {
+    margin-top: 45px;
+}
+
+.public-products-section h2 {
+    color: #173f32;
+    margin-bottom: 10px;
+}
+
+.products-intro {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.public-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 250px));
+    justify-content: center;
+    gap: 22px;
+}
+
+.public-product-card {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.public-product-image {
+    width: 100%;
+    height: 190px;
+    background: #e5efe8;
+    overflow: hidden;
+}
+
+.public-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-image-placeholder {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    color: #567363;
+    text-align: center;
+}
+
+.public-product-info {
+    padding: 17px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.public-product-info h3 {
+    color: #173f32;
+    margin-bottom: 8px;
+}
+
+.public-product-category {
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.public-product-price {
+    color: #26734d;
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.public-product-description {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    overflow-wrap: anywhere;
+}
+
+.product-contact-button {
+    display: block;
+    background: #26734d;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 7px;
+    font-size: 13px;
+    margin-top: auto;
+}
+
+.business-error {
+    color: #b42318;
+    padding: 15px;
+}
+
+@media (max-width: 600px) {
+    .business-hero {
+        padding: 40px 5%;
+    }
+
+    .business-directory,
+    .public-business-page {
+        padding: 15px;
+    }
+
+    .business-search {
+        flex-direction: column;
+    }
+
+    .business-search input,
+    .business-search select,
+    .business-search button {
+        width: 100%;
+    }
+
+    .business-cover-container {
+        height: 220px;
+    }
+
+    .public-business-info {
+        padding: 20px;
+    }
+
+    .public-business-info h1 {
+        font-size: 24px;
+    }
+
+    .business-grid,
+    .public-products-grid {
+        grid-template-columns: minmax(0, 300px);
+    }
+}
+
+/* Business logo on public profile */
+.public-business-logo {
+    display: block;
+    width: 100px;
+    height: 100px;
+    padding: 8px;
+    object-fit: contain;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 14px;
+    margin-bottom: 18px;
+}
+
+.public-business-logo[hidden] {
+    display: none;
+}
+
+.business-card-logo {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: white;
+    border: 1px solid #e5e5e5;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.business-card-logo[hidden] {
+    display: none;
+}
+
+/* CUSTOMER PRODUCT ORDER ENQUIRY */
+
+.order-enquiry-section {
+    max-width: 700px;
+    margin: 35px auto;
+    padding: 28px;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+}
+
+.order-enquiry-section h2 {
+    color: #173f32;
+    margin-bottom: 12px;
+}
+
+.order-enquiry-section > p {
+    color: #26734d;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.order-enquiry-section label {
+    display: block;
+    margin: 15px 0 7px;
+    font-weight: bold;
+    color: #173f32;
+}
+
+.order-enquiry-section input,
+.order-enquiry-section textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-family: Arial, sans-serif;
+}
+
+.order-enquiry-section textarea {
+    resize: vertical;
+}
+
+.order-enquiry-section button {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.product-order-button {
+    display: block;
+    width: 100%;
+    background: #e5efe8;
+    color: #173f32;
+    padding: 12px;
+    border-radius: 7px;
+    margin-top: 12px;
+}
+
+.product-order-button:hover {
+    background: #d2e5d8;
+}
+
+#cancelOrderButton {
+    background: #777;
+}
+
+#cancelOrderButton:hover {
+    background: #555;
+}
+
+#orderMessageStatus {
+    margin-top: 15px;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+#orderWhatsappLink {
+    display: block;
+    text-align: center;
+    margin-top: 18px;
+}
+
+#orderWhatsappLink[hidden] {
+    display: none;
+}
+
+.order-enquiry-section[hidden] {
+    display: none;
+}

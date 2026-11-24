@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pequenos Negócios | BairroServices</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h2>BairroServices</h2>
+    <a href="index.html">Inicial</a>
+</header>
+
+<section class="business-hero">
+
+    <h1>Descubra pequenos negócios perto de você</h1>
+
+    <p>
+        Conheça empreendedores do seu bairro e descubra
+        produtos feitos e vendidos perto de você.
+    </p>
+
+    <div class="business-search">
+
+        <input
+            type="text"
+            id="businessSearch"
+            placeholder="Pesquisar negócio, produto ou bairro..."
+        >
+
+        <select id="businessCategoryFilter">
+            <option value="">Todas as categorias</option>
+            <option value="food">Comidas e lanches</option>
+            <option value="bakery">Bolos e padarias</option>
+            <option value="clothing">Roupas e moda</option>
+            <option value="joias">Joias e acessórios</option>
+            <option value="beauty">Beleza e cosméticos</option>
+            <option value="electronics">Eletrônicos</option>
+            <option value="other">Outros negócios</option>
+        </select>
+
+        <button type="button" onclick="searchBusinesses()">
+            Pesquisar
+        </button>
+
+    </div>
+
+</section>
+
+<main class="business-directory">
+
+    <div class="business-directory-heading">
+        <h2>Negócios da sua região</h2>
+        <p id="businessTotal">Carregando negócios...</p>
+    </div>
+
+    <div id="businessContainer" class="business-grid">
+        <p>Carregando pequenos negócios...</p>
+    </div>
+
+</main>
+
+<script src="pequenos-negocios.js"></script>
+
+</body>
+</html>
