@@ -1,51 +1,62 @@
+
 document.addEventListener('DOMContentLoaded', function () {
-  const slides = document.querySelectorAll('.slide')
-  const dots = document.querySelectorAll('.dot')
-  const nextButton = document.querySelector('.slide-arrow.next')
-  const prevButton = document.querySelector('.slide-arrow.prev')
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const nextButton = document.querySelector('.slide-arrow.next');
+    const prevButton = document.querySelector('.slide-arrow.prev');
 
-  let currentSlide = 0
-  let slideTimer
+    let currentSlide = 0;
+    let slideTimer;
 
-  function showSlide(index) {
-    slides[currentSlide].classList.remove('active')
-    dots[currentSlide].classList.remove('active')
+    function showSlide(index) {
+        if (!slides.length) return;
 
-    currentSlide = (index + slides.length) % slides.length
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
 
-    slides[currentSlide].classList.add('active')
-    dots[currentSlide].classList.add('active')
-  }
+        currentSlide = (index + slides.length) % slides.length;
 
-  function nextSlide() {
-    showSlide(currentSlide + 1)
-  }
+        slides[currentSlide].classList.add('active');
 
-  function previousSlide() {
-    showSlide(currentSlide - 1)
-  }
+        if (dots[currentSlide]) {
+            dots[currentSlide].classList.add('active');
+        }
+    }
 
-  function startSlideshow() {
-    clearInterval(slideTimer)
-    slideTimer = setInterval(nextSlide, 5000)
-  }
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
 
-  nextButton.addEventListener('click', function () {
-    nextSlide()
-    startSlideshow()
-  })
+    function previousSlide() {
+        showSlide(currentSlide - 1);
+    }
 
-  prevButton.addEventListener('click', function () {
-    previousSlide()
-    startSlideshow()
-  })
+    function startSlideshow() {
+        clearInterval(slideTimer);
+        slideTimer = setInterval(nextSlide, 6000);
+    }
 
-  dots.forEach(function (dot, index) {
-    dot.addEventListener('click', function () {
-      showSlide(index)
-      startSlideshow()
-    })
-  })
+    if (nextButton) {
+        nextButton.addEventListener('click', function () {
+            nextSlide();
+            startSlideshow();
+        });
+    }
 
-  startSlideshow()
-})
+    if (prevButton) {
+        prevButton.addEventListener('click', function () {
+            previousSlide();
+            startSlideshow();
+        });
+    }
+
+    dots.forEach(function (dot, index) {
+        dot.addEventListener('click', function () {
+            showSlide(index);
+            startSlideshow();
+        });
+    });
+
+    showSlide(0);
+    startSlideshow();
+});

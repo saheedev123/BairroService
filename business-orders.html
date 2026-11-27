@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Solicitações de Clientes | BairroServices</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f5;
+            color: #26352e;
+        }
+
+        header {
+            background: #173f32;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 950px;
+            margin: 35px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            color: #64736a;
+            margin-bottom: 25px;
+        }
+
+        .summary {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px #00000010;
+        }
+
+        .summary strong {
+            color: #26734d;
+            font-size: 28px;
+            display: block;
+            margin-top: 8px;
+        }
+
+        .order-card {
+            background: white;
+            padding: 22px;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 8px #00000010;
+        }
+
+        .order-card h2 {
+            color: #173f32;
+            margin-bottom: 15px;
+        }
+
+        .order-card p {
+            margin: 9px 0;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        .order-status {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 13px;
+            background: #fff2cc;
+            color: #805b00;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .empty {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .error {
+            color: #b42318;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                margin: 15px auto;
+                padding: 15px;
+            }
+
+            .order-card {
+                padding: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>BairroServices</h2>
+    <a href="smallbusiness-dashboard.html">Voltar ao painel</a>
+</header>
+
+<main>
+
+    <h1>Solicitações de Clientes</h1>
+
+    <p class="intro">
+        Aqui você pode acompanhar os pedidos de produtos feitos pelos seus clientes.
+    </p>
+
+    <div class="summary">
+        Total de solicitações recebidas:
+        <strong id="totalOrders">0</strong>
+    </div>
+
+    <p id="ordersLoading">Carregando solicitações...</p>
+
+    <p id="ordersError" class="error" hidden></p>
+
+    <section id="ordersContainer"></section>
+
+</main>
+
+<script src="business-orders.js"></script>
+
+</body>
+</html>
